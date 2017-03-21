@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="rl.example.com.myapplication">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,12 +15,17 @@
         <activity android:name=".StartCheckoutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ReviewOrderActivity" />
-        <activity android:name=".OrderCompleteActivity"></activity>
+        <activity android:name=".OrderCompleteActivity" />
+
+        <receiver android:name=".ReportWriterReceiver">
+            <intent-filter>
+                <action android:name="rl.example.com.myapplication.intent.action.WRITE_REPORT" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

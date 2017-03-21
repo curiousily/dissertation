@@ -1,4 +1,13 @@
 apply plugin: 'com.android.application'
+apply plugin: 'jacoco'
+
+def coverageSourceDirs = [
+        '../app/src/main/java'
+]
+
+jacoco {
+    toolVersion = "0.7.9" // try a newer version if you can
+}
 
 android {
     compileSdkVersion 25
@@ -16,6 +25,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            testCoverageEnabled = true
+        }
     }
 }
 
@@ -24,7 +36,69 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+}
+
+task jacocoFullReport(type: JacocoReport) {
+    group = "Reporting"
+    description = "Generate Jacoco full coverage reports"
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+    classDirectories = fileTree(
+            dir: './build/intermediates/classes/debug',
+            excludes: ['**/R*.class',
+                       '**/*$InjectAdapter.class',
+                       '**/*$ModuleAdapter.class',
+                       '**/*$ViewInjector*.class',
+                       '**/*_MembersInjector.class',
+                       '**/Dagger*Component.class',
+                       '**/Dagger*Component$Builder.class',
+                       '**/*Module_*Factory.class',
+                       '**/*BuildConfig.class',
+                       '**/*StaticInjection*.*'
+            ])
+    sourceDirectories = files(coverageSourceDirs)
+    executionData = files("$buildDir/outputs/code-coverage/coverage.exec")
+    doFirst {
+        new File("$buildDir/intermediates/classes/").eachFileRecurse { file ->
+            if (file.name.contains('$$')) {
+                file.renameTo(file.path.replace('$$', '$'))
+            }
+        }
+    }
+}
+
+task jacocoRuntimeReport(type: JacocoReport) {
+    group = "Reporting"
+    description = "Generate Jacoco full coverage reports"
+    reports {
+        xml.enabled = true
+        html.enabled = false
+    }
+    classDirectories = fileTree(
+            dir: './build/intermediates/classes/debug',
+            excludes: ['**/R*.class',
+                       '**/*$InjectAdapter.class',
+                       '**/*$ModuleAdapter.class',
+                       '**/*$ViewInjector*.class',
+                       '**/*_MembersInjector.class',
+                       '**/Dagger*Component.class',
+                       '**/Dagger*Component$Builder.class',
+                       '**/*Module_*Factory.class',
+                       '**/*BuildConfig.class',
+                       '**/*StaticInjection*.*'
+            ])
+    sourceDirectories = files(coverageSourceDirs)
+    executionData = files("$buildDir/outputs/code-coverage/coverage.exec")
+    doFirst {
+        new File("$buildDir/intermediates/classes/").eachFileRecurse { file ->
+            if (file.name.contains('$$')) {
+                file.renameTo(file.path.replace('$$', '$'))
+            }
+        }
+    }
 }

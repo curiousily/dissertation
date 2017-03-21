@@ -34,6 +34,7 @@ from subprocess import call
 from torch.autograd import Variable
 
 FNULL = open(os.devnull, 'w')
+APP_UNDER_TEST_ROOT = "/Users/vini/Dev/uni/dissertation/code/sample_app/"
 
 # call("adb shell settings put global window_animation_scale 0.0", shell=True)
 # call("adb shell settings put global transition_animation_scale 0.0", shell=True)
@@ -97,6 +98,19 @@ class AndroidEnv:
         torch_img = torch.from_numpy(screen_scaled)
         return resize(torch_img).unsqueeze(0)
 
+    def _get_current_coverage(self):
+        start_time = timeit.default_timer()
+        write_report_cmd = "adb shell am broadcast -a rl.example.com.myapplication.intent.action.WRITE_REPORT"
+        read_report_cmd = f"adb pull /sdcard/coverage.exec {APP_UNDER_TEST_ROOT}app/build/outputs/code-coverage/coverage.exec"
+        generate_report_cmd = f"sh {APP_UNDER_TEST_ROOT}gradlew -p {APP_UNDER_TEST_ROOT} jacocoRuntimeReport"
+        self._exec(f"{write_report_cmd} && {read_report_cmd} && {generate_report_cmd}")
+        "javac -cp lib/org.jacoco.ant-0.7.9-nodeps.jar:. ReportGenerator.java"
+        "java -cp lib/org.jacoco.ant-0.7.9-nodeps.jar:. ReportGenerator /Users/vini/Dev/uni/dissertation/code/sample_app/"
+        print(f"Complete in {timeit.default_timer() - start_time} seconds")
+        parser = etree.XMLParser(ns_clean=True, recover=True, encoding='utf-8')
+        root = etree.parse(f"{APP_UNDER_TEST_ROOT}app/build/reports/jacoco/jacocoRuntimeReport/jacocoRuntimeReport.xml")
+        print(root)
+
 class DQN(nn.Module):
     def __init__(self):
         super(DQN, self).__init__()
@@ -148,7 +162,6 @@ memory = ReplayMemory(10000)
 optimizer = optim.RMSprop(model.parameters())
 model.type(dtype)
 
-
 steps_done = 0
 def select_action(state, actions):
     global steps_done
@@ -168,6 +181,7 @@ app_package = "rl.example.com.myapplication"
 
 # start_time = timeit.default_timer()
 env = AndroidEnv(app_package, dict(width=1080, height=1920))
+env._get_current_coverage()
 
 # print(f"Complete in {timeit.default_timer() - start_time} seconds")
 
@@ -216,27 +230,28 @@ def optimize_model():
         param.grad.data.clamp_(-1, 1)
     optimizer.step()
 
-episode_durations = []
-for i_episode in count(1):
-    # Initialize the environment and state
-    print(f"\n\nStarting epoch {i_episode}")
-    state, actions = env.reset()
-    for t in count():
-        # Select and perform an action
-        action = select_action(state, actions)
-        next_state, actions, reward, done = env.step(actions[action[0][0]])
-        reward = torch.Tensor([reward])
+def run():
+    episode_durations = []
+    for i_episode in count(1):
+        # Initialize the environment and state
+        print(f"\n\nStarting epoch {i_episode}")
+        state, actions = env.reset()
+        for t in count():
+            # Select and perform an action
+            action = select_action(state, actions)
+            next_state, actions, reward, done = env.step(actions[action[0][0]])
+            reward = torch.Tensor([reward])
 
-        if done:
-            next_state = None
+            if done:
+                next_state = None
 
-        # Store the transition in memory
-        memory.push(state, action, next_state, reward)
-        # Move to the next state
-        state = next_state
-        # Perform one step of the optimization (on the target network)
-        optimize_model()
-        if done:
-            print(f"Epoch complete in {t + 1} steps")
-            episode_durations.append(t+1)
-            break
+            # Store the transition in memory
+            memory.push(state, action, next_state, reward)
+            # Move to the next state
+            state = next_state
+            # Perform one step of the optimization (on the target network)
+            optimize_model()
+            if done:
+                print(f"Epoch complete in {t + 1} steps")
+                episode_durations.append(t+1)
+                break

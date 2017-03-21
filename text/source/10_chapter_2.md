@@ -181,6 +181,7 @@ VI методите заменят изчисляването на интегр�
 
 BBoxTester: [@zhauniarovich2015towards] 
 CovDroid: [@yeh2015covdroid] 
+ABCA: [@huang2015abca]
 
 #### Текущо състояние (State of the art?)
 
