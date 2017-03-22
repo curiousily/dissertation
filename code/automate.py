@@ -2,6 +2,7 @@ from uiautomator import Device
 import numpy as np
 import time
 import timeit
+import urllib3
 
 import torchvision.transforms as T
 from PIL import Image
@@ -36,6 +37,8 @@ from torch.autograd import Variable
 
 FNULL = open(os.devnull, 'w')
 APP_UNDER_TEST_ROOT = "/Users/vini/Dev/uni/dissertation/code/sample_app/"
+
+http_client = urllib3.PoolManager()
 
 # call("adb shell settings put global window_animation_scale 0.0", shell=True)
 # call("adb shell settings put global transition_animation_scale 0.0", shell=True)
@@ -104,10 +107,14 @@ class AndroidEnv:
 
     def _get_current_coverage(self):
         start_time = timeit.default_timer()
-        write_report_cmd = "adb shell am broadcast -a rl.example.com.myapplication.intent.action.WRITE_REPORT"
-        read_report_cmd = f"adb pull /sdcard/coverage.exec {APP_UNDER_TEST_ROOT}app/build/outputs/code-coverage/coverage.exec"
+        # write_report_cmd = "adb shell am broadcast -a rl.example.com.myapplication.intent.action.WRITE_REPORT"
+        # read_report_cmd = f"adb pull /sdcard/coverage.exec {APP_UNDER_TEST_ROOT}app/build/outputs/code-coverage/coverage.exec"
+
+        with http_client.request("GET", "http://localhost:8981", preload_content=False) as r, open("coverage/coverage.exec", "wb") as coverage_file:
+            coverage_file.write(r.read())
         generate_report_cmd = f"java -cp lib/org.jacoco.ant-0.7.9-nodeps.jar:. ReportGenerator {APP_UNDER_TEST_ROOT}"
-        self._exec(f"{write_report_cmd} && {read_report_cmd} && {generate_report_cmd}")
+        self._exec(generate_report_cmd)
+        # self._exec(f"{write_report_cmd} && {read_report_cmd} && {generate_report_cmd}")
         df = pd.read_csv("coverage/report.csv")
         missed, covered = df[['LINE_MISSED', 'LINE_COVERED']].sum()
         print(f"Complete in {timeit.default_timer() - start_time} seconds")
@@ -182,7 +189,9 @@ d = Device()
 app_package = "rl.example.com.myapplication"
 
 env = AndroidEnv(app_package, dict(width=1080, height=1920))
-# env._get_current_coverage()
+
+
+print(env._get_current_coverage())
 
 last_sync = 0
 def optimize_model():

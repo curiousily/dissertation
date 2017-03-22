@@ -126,7 +126,7 @@ public class ReportGenerator {
         for (final File f : classesDirectory.listFiles()) {
 
             String path = f.getPath();
-            if(path.contains("R.class") || path.contains("R$") || path.contains("ReportWriterReceiver") || path.contains("BuildConfig")) {
+            if(path.contains("R.class") || path.contains("R$") || path.contains("CodeCoverageHTTPServer") || path.contains("BuildConfig")) {
                 continue;
             }
              

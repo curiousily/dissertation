@@ -1,0 +1,4 @@
+adb + gradle report task -> 1.89s
+adb + custom csv reporter -> 0.39s
+http + custom csv reporter -> 0.19s
+http + urllib3 + custom csv reporter -> 0.17s
