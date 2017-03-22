@@ -1,5 +1,4 @@
 from uiautomator import Device
-from lxml import etree
 import numpy as np
 import time
 import timeit
@@ -7,6 +6,8 @@ import timeit
 import torchvision.transforms as T
 from PIL import Image
 from scipy import misc
+
+import pandas as pd
 
 import torch
 
@@ -39,6 +40,9 @@ APP_UNDER_TEST_ROOT = "/Users/vini/Dev/uni/dissertation/code/sample_app/"
 # call("adb shell settings put global window_animation_scale 0.0", shell=True)
 # call("adb shell settings put global transition_animation_scale 0.0", shell=True)
 # call("adb shell settings put global animator_duration_scale 0.0", shell=True)
+
+
+compile_reporter = "javac -cp lib/org.jacoco.ant-0.7.9-nodeps.jar:. ReportGenerator.java"
 
 
 class Action:
@@ -102,14 +106,12 @@ class AndroidEnv:
         start_time = timeit.default_timer()
         write_report_cmd = "adb shell am broadcast -a rl.example.com.myapplication.intent.action.WRITE_REPORT"
         read_report_cmd = f"adb pull /sdcard/coverage.exec {APP_UNDER_TEST_ROOT}app/build/outputs/code-coverage/coverage.exec"
-        generate_report_cmd = f"sh {APP_UNDER_TEST_ROOT}gradlew -p {APP_UNDER_TEST_ROOT} jacocoRuntimeReport"
+        generate_report_cmd = f"java -cp lib/org.jacoco.ant-0.7.9-nodeps.jar:. ReportGenerator {APP_UNDER_TEST_ROOT}"
         self._exec(f"{write_report_cmd} && {read_report_cmd} && {generate_report_cmd}")
-        "javac -cp lib/org.jacoco.ant-0.7.9-nodeps.jar:. ReportGenerator.java"
-        "java -cp lib/org.jacoco.ant-0.7.9-nodeps.jar:. ReportGenerator /Users/vini/Dev/uni/dissertation/code/sample_app/"
+        df = pd.read_csv("coverage/report.csv")
+        missed, covered = df[['LINE_MISSED', 'LINE_COVERED']].sum()
         print(f"Complete in {timeit.default_timer() - start_time} seconds")
-        parser = etree.XMLParser(ns_clean=True, recover=True, encoding='utf-8')
-        root = etree.parse(f"{APP_UNDER_TEST_ROOT}app/build/reports/jacoco/jacocoRuntimeReport/jacocoRuntimeReport.xml")
-        print(root)
+        return covered / (missed + covered)
 
 class DQN(nn.Module):
     def __init__(self):
@@ -179,11 +181,8 @@ d = Device()
 
 app_package = "rl.example.com.myapplication"
 
-# start_time = timeit.default_timer()
 env = AndroidEnv(app_package, dict(width=1080, height=1920))
-env._get_current_coverage()
-
-# print(f"Complete in {timeit.default_timer() - start_time} seconds")
+# env._get_current_coverage()
 
 last_sync = 0
 def optimize_model():

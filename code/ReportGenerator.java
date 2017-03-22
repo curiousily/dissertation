@@ -50,12 +50,12 @@ public class ReportGenerator {
 	 */
 	public ReportGenerator(final File projectDirectory) {
 		this.title = projectDirectory.getName();
-		this.executionDataFile = new File("coverage.exec");
+		this.executionDataFile = new File("./coverage/coverage.exec");
 		this.classesDirectory = new File(projectDirectory, "app/build/intermediates/classes/debug/rl/example/com/myapplication");
 		this.sourceDirectory = new File(projectDirectory, "app/src/main/java");
 		//this.reportDirectory = new File(projectDirectory, "reports");
         try {
-            this.reportDirectory = new FileOutputStream("report.csv");
+            this.reportDirectory = new FileOutputStream("./coverage/report.csv");
         } catch (Exception e) {
             throw new RuntimeException("Error creating report file");
         }
