@@ -44,9 +44,7 @@ http_client = urllib3.PoolManager()
 # call("adb shell settings put global transition_animation_scale 0.0", shell=True)
 # call("adb shell settings put global animator_duration_scale 0.0", shell=True)
 
-
 compile_reporter = "javac -cp lib/org.jacoco.ant-0.7.9-nodeps.jar:. ReportGenerator.java"
-
 
 class Action:
 
@@ -77,12 +75,9 @@ class AndroidEnv:
 
     def step(self, action):
         action.execute()
-        obs = self._get_screen()
-
-        img = misc.imread("state.png")
-        done = np.array_equal(img[100:], self.complete[100:])
-        reward = 1000 if done else 0
-        return obs, self._get_actions(), reward, done
+        coverage = self._get_current_coverage()
+        done = coverage > 0.9
+        return self._get_screen(), self._get_actions(), coverage, done
 
     def _exec(self, command):
         call(command, shell=True, stdout=FNULL)
@@ -95,7 +90,7 @@ class AndroidEnv:
         return actions
 
     def _get_screen(self):
-        self.device.screenshot("state.png")
+        print(self.device.screenshot("state.png"))
         img = misc.imread("state.png")
         return self._image_to_torch(img)
 
@@ -107,18 +102,14 @@ class AndroidEnv:
         return resize(torch_img).unsqueeze(0)
 
     def _get_current_coverage(self):
-        start_time = timeit.default_timer()
-        # write_report_cmd = "adb shell am broadcast -a rl.example.com.myapplication.intent.action.WRITE_REPORT"
-        # read_report_cmd = f"adb pull /sdcard/coverage.exec {APP_UNDER_TEST_ROOT}app/build/outputs/code-coverage/coverage.exec"
-
+        # start_time = timeit.default_timer()
         with http_client.request("GET", "http://localhost:8981", preload_content=False) as r, open("coverage/coverage.exec", "wb") as coverage_file:
             coverage_file.write(r.read())
         generate_report_cmd = f"java -cp lib/org.jacoco.ant-0.7.9-nodeps.jar:. ReportGenerator {APP_UNDER_TEST_ROOT}"
         self._exec(generate_report_cmd)
-        # self._exec(f"{write_report_cmd} && {read_report_cmd} && {generate_report_cmd}")
         df = pd.read_csv("coverage/report.csv")
         missed, covered = df[['LINE_MISSED', 'LINE_COVERED']].sum()
-        print(f"Complete in {timeit.default_timer() - start_time} seconds")
+        # print(f"Complete in {timeit.default_timer() - start_time} seconds")
         return covered / (missed + covered)
 
 class DQN(nn.Module):
@@ -190,9 +181,7 @@ d = Device()
 app_package = "rl.example.com.myapplication"
 
 env = AndroidEnv(app_package, dict(width=1080, height=1920))
-
-
-print(env._get_current_coverage())
+# print(env._get_current_coverage())
 
 last_sync = 0
 def optimize_model():
@@ -264,3 +253,5 @@ def run():
                 print(f"Epoch complete in {t + 1} steps")
                 episode_durations.append(t+1)
                 break
+
+run()
