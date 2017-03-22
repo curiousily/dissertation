@@ -14,5 +14,4 @@ public class App extends Application {
         super.onCreate();
         CodeCoverageHTTPServer.start((WifiManager) getSystemService(WIFI_SERVICE));
     }
-
 }
