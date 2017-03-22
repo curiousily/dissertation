@@ -90,7 +90,7 @@ class AndroidEnv:
         return actions
 
     def _get_screen(self):
-        print(self.device.screenshot("state.png"))
+        self.device.screenshot("state.png")
         img = misc.imread("state.png")
         return self._image_to_torch(img)
 
@@ -181,7 +181,6 @@ d = Device()
 app_package = "rl.example.com.myapplication"
 
 env = AndroidEnv(app_package, dict(width=1080, height=1920))
-# print(env._get_current_coverage())
 
 last_sync = 0
 def optimize_model():
