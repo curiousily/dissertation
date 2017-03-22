@@ -69,6 +69,7 @@ class AndroidEnv:
         self.complete = misc.imread("complete.png")
 
     def reset(self):
+        self._exec("adb forward tcp:8981 tcp:8981")
         self._exec(f"adb shell am force-stop {self.app_package}")
         self._exec(f"adb shell pm clear {self.app_package}")
         self._exec(f"adb shell monkey -p {self.app_package} 1")
