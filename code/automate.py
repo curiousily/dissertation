@@ -36,6 +36,7 @@ from subprocess import call
 from torch.autograd import Variable
 
 FNULL = open(os.devnull, 'w')
+PROJECT_ROOT = "/Users/vini/Dev/uni/dissertation/code/"
 APP_UNDER_TEST_ROOT = "/Users/vini/Dev/uni/dissertation/code/sample_app/"
 
 http_client = urllib3.PoolManager()
@@ -65,9 +66,11 @@ class AndroidEnv:
         self.device = Device()
         self.screen_size = screen_size
         self.complete = misc.imread("complete.png")
+        self._exec(f"ng ng-cp {PROJECT_ROOT}lib/org.jacoco.ant-0.7.9-nodeps.jar")
+        self._exec(f"ng ng-cp {PROJECT_ROOT}")
+        self._exec("adb forward tcp:8981 tcp:8981")
 
     def reset(self):
-        self._exec("adb forward tcp:8981 tcp:8981")
         self._exec(f"adb shell am force-stop {self.app_package}")
         self._exec(f"adb shell pm clear {self.app_package}")
         self._exec(f"adb shell monkey -p {self.app_package} 1")
@@ -76,7 +79,8 @@ class AndroidEnv:
     def step(self, action):
         action.execute()
         coverage = self._get_current_coverage()
-        done = coverage > 0.9
+        print(coverage)
+        done = coverage > 0.8
         return self._get_screen(), self._get_actions(), coverage, done
 
     def _exec(self, command):
@@ -102,14 +106,14 @@ class AndroidEnv:
         return resize(torch_img).unsqueeze(0)
 
     def _get_current_coverage(self):
-        # start_time = timeit.default_timer()
+        start_time = timeit.default_timer()
         with http_client.request("GET", "http://localhost:8981", preload_content=False) as r, open("coverage/coverage.exec", "wb") as coverage_file:
             coverage_file.write(r.read())
-        generate_report_cmd = f"java -cp lib/org.jacoco.ant-0.7.9-nodeps.jar:. ReportGenerator {APP_UNDER_TEST_ROOT}"
+        generate_report_cmd = f"ng ReportGenerator {APP_UNDER_TEST_ROOT}"
         self._exec(generate_report_cmd)
         df = pd.read_csv("coverage/report.csv")
         missed, covered = df[['LINE_MISSED', 'LINE_COVERED']].sum()
-        # print(f"Complete in {timeit.default_timer() - start_time} seconds")
+        print(f"Complete in {timeit.default_timer() - start_time} seconds")
         return covered / (missed + covered)
 
 class DQN(nn.Module):

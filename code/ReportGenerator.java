@@ -12,6 +12,7 @@
 import java.io.File;
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import org.jacoco.core.analysis.Analyzer;
 import org.jacoco.core.analysis.CoverageBuilder;
@@ -152,9 +153,11 @@ public class ReportGenerator {
 	 */
 	public static void main(final String[] args) throws IOException {
 		for (int i = 0; i < args.length; i++) {
+//            long start = System.nanoTime();
 			final ReportGenerator generator = new ReportGenerator(new File(
 					args[i]));
 			generator.create();
+//			System.out.println("Took " + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start) + " to generate");
 		}
 	}
 
