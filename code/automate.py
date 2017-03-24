@@ -65,7 +65,6 @@ class AndroidEnv:
         self.app_package = app_package
         self.device = Device()
         self.screen_size = screen_size
-        self.complete = misc.imread("complete.png")
         self._exec(f"ng ng-cp {PROJECT_ROOT}lib/org.jacoco.ant-0.7.9-nodeps.jar")
         self._exec(f"ng ng-cp {PROJECT_ROOT}")
         self._exec("adb forward tcp:8981 tcp:8981")
