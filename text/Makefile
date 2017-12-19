@@ -39,7 +39,7 @@ pdf:
 	-V mainfont="Times New Roman" \
 	-V lang=bulgarian \
 	-N \
-	--latex-engine=xelatex
+	--pdf-engine=xelatex
 
 tex:
 	pandoc "$(INPUTDIR)"/*.md \
