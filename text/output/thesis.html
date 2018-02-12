@@ -409,6 +409,13 @@ Table x.x Short title of the figure . . . </p>
 <li>Има ли разлики в изходните данни? (Change in hierarchy/image screenshot)</li>
 </ul>
 <h1 id="избор-на-действие"><span class="header-section-number">3</span> Избор на действие</h1>
+<p>Проверката за качество на софтуерни продукти често се извършва посредством автоматизирани, полуавтоматизирани или ръчно изпълняващи се тестове. Основна цел при създаване и изпълнение на тези тестове е постигане на високо или пълно покритие на програмен код <span class="citation" data-cites="zhu1997software">(Zhu et al. 1997)</span>. От своя страна, това покритие повишава възможността програмата да не достига непредвидени състояния и притежава желаната функционалност <span class="citation" data-cites="ohba1982software">(Ohba 1982)</span>.</p>
+<p>Създаването на тестове, които проверяват цялостната функционалност на системата често се извършва от специалисти по проверка на качеството (QA). Те създават автоматизирани или ръчно изпълняват тестове, спрямо предварително създадени спецификации. Част от тестовете, обхващащи целият софтуерен продукт се извършват спрямо графичната потребителски интерфейс (ГПИ), който той предоставя. Тези тестове (наречени ГПИ тестове (GUI tests) симулират взаимодействието на потребител с програмата.</p>
+<p>Създаването на автоматизирани ГПИ тестове е обвързано с трудности, като често променящи се визуални елементи, забавено изпълнение, достигане на непредвидени състояния на средата и др. <span class="citation" data-cites="memon2002gui">(Memon 2002)</span>. Често, поради тази причини подобен вид тестове се изпълняват изцяло ръчно или полуавтоматизирано, което изисква взаимодействие с експерт.</p>
+<p>QA експертът взаимодейства с ГПИ чрез поредица от действия (извършени чрез мишка, клавиатура, докосвания върху екран и/или др.), които променят ГПИ и водят до друго състояние (в частност, нов екран). Когато това състояние не е наблюдавано до момента, покритието на програмен код се увеличава, поради нуждата от изпълнение му за създаване на самото състояние.</p>
+<p>Тогава, целта при създаване на ГПИ тестове може да се определи като посещаване на всяко състояние на визуалната среда поне веднъж. Повторно наблюдение на дадено състояние може да е необходимо поради допълнителни възможни действия. Действията, които се избират, определят последователността на наблюдаваните състояния, както и бързодействието на текущия тест (минимален брой на взети действия за постигане на целта).</p>
+<p>В тази част от работата ще създадем модел, който избира следващо действие, когато средата се намира в определено състояние. Това действие трябва да бъде избрано, така че да максимизира увеличението на покритие на програмен код и минимизира нуждата възможността за попадане във вече наблюдавано състояние. Състоянието на средата ще бъде закодирано чрез матрица, отговаряща на елементите в нея. Това е опростен подход към решаване на поставената задача, като той ще бъде разширен в следващата глава.</p>
+<p>Решаването на задачата използва т.нар подход базиран на наличните данни (data-driven). Конкретно, създаваме БИНМ, която приема състоянието на средата като входни параметри и изчислява апостериорно разпределение за оценката на (до колко добро е) всяко от възможните действия. Обучението на модела се извършва чрез предварително събрани данни.</p>
 <h2 id="литературен-обзор-1"><span class="header-section-number">3.1</span> Литературен обзор</h2>
 <h2 id="модел"><span class="header-section-number">3.2</span> Модел</h2>
 <p>Нека имаме среда <span class="math inline">\(E\)</span>, намираща се в състояние <span class="math inline">\(s \in \mathbb{S}\)</span>, върху което могат да бъдат изпълнени действия от множеството от действия <span class="math inline">\(\mathbb{A}\)</span>. При избор на действие <span class="math inline">\(a \in \mathbb{A}\)</span>, средата <span class="math inline">\(E\)</span> предоставя награда <span class="math inline">\(r\)</span>, която приема стойности в интервала <span class="math inline">\([0; 1]\)</span> и преминава в ново състояние <span class="math inline">\(s&#39;\)</span> (в частност, <span class="math inline">\(s&#39; = s\)</span>, т.е. средата може да не премине в ново състояние). Множеството <span class="math inline">\(\mathbb{A}\)</span> е ненаредено и всяко <span class="math inline">\(a \in \mathbb{A}\)</span> може да се обозначи с единствено цяло число, като по този начин въвеждаме наредба в <span class="math inline">\(\mathbb{A}\)</span>. Всяко състояние на средата <span class="math inline">\(S\)</span> позволява изпълнението на действия <span class="math inline">\(\mathbb{A}\)</span>, които са предварително дефинирани. Множеството от всички възможни състояния на средата <span class="math inline">\(\mathbb{S}\)</span> е неизвестно.</p>
@@ -693,6 +700,9 @@ References are automatically generated from the BibTex file (References.bib)
 <div id="ref-mackay1992practical">
 <p>MacKay, D.J., 1992. A practical bayesian framework for backpropagation networks. <em>Neural computation</em>, 4(3), pp.448–472.</p>
 </div>
+<div id="ref-memon2002gui">
+<p>Memon, A.M., 2002. GUI testing: Pitfalls and process. <em>Computer</em>, 35(8), pp.87–88.</p>
+</div>
 <div id="ref-metropolis1953equation">
 <p>Metropolis, N. et al., 1953. Equation of state calculations by fast computing machines. <em>The journal of chemical physics</em>, 21(6), pp.1087–1092.</p>
 </div>
@@ -713,6 +723,9 @@ References are automatically generated from the BibTex file (References.bib)
 </div>
 <div id="ref-neal2012bayesian">
 <p>Neal, R.M., 2012. <em>Bayesian learning for neural networks</em>, Springer Science &amp; Business Media.</p>
+</div>
+<div id="ref-ohba1982software">
+<p>Ohba, M., 1982. Software quality &amp;equil; test accuracy<span class="math inline">\(\times\)</span> test coverage. In <em>Proceedings of the 6th international conference on software engineering</em>. IEEE Computer Society Press, pp. 287–293.</p>
 </div>
 <div id="ref-riedmiller2005neural">
 <p>Riedmiller, M., 2005. Neural fitted q iteration–first experiences with a data efficient neural reinforcement learning method. In <em>European conference on machine learning</em>. Springer, pp. 317–328.</p>
@@ -758,6 +771,9 @@ References are automatically generated from the BibTex file (References.bib)
 </div>
 <div id="ref-zhauniarovich2015towards">
 <p>Zhauniarovich, Y. et al., 2015. Towards black box testing of android apps. In <em>Availability, reliability and security (ares), 2015 10th international conference on</em>. IEEE, pp. 501–510.</p>
+</div>
+<div id="ref-zhu1997software">
+<p>Zhu, H., Hall, P.A. &amp; May, J.H., 1997. Software unit test coverage and adequacy. <em>Acm computing surveys (csur)</em>, 29(4), pp.366–427.</p>
 </div>
 </div>
             </body>
