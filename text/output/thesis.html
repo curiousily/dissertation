@@ -417,6 +417,19 @@ Table x.x Short title of the figure . . . </p>
 <p>В тази част от работата ще създадем модел, който избира следващо действие, когато средата се намира в определено състояние. Това действие трябва да бъде избрано, така че да максимизира увеличението на покритие на програмен код и минимизира нуждата възможността за попадане във вече наблюдавано състояние. Състоянието на средата ще бъде закодирано чрез матрица, отговаряща на елементите в нея. Това е опростен подход към решаване на поставената задача, като той ще бъде разширен в следващата глава.</p>
 <p>Решаването на задачата използва т.нар подход базиран на наличните данни (data-driven). Конкретно, създаваме БИНМ, която приема състоянието на средата като входни параметри и изчислява апостериорно разпределение за оценката на (до колко добро е) всяко от възможните действия. Обучението на модела се извършва чрез предварително събрани данни.</p>
 <h2 id="литературен-обзор-1"><span class="header-section-number">3.1</span> Литературен обзор</h2>
+<p>Съществуват различни подходи за автоматизирано създаване на ГПИ тестове за мобилни и уеб приложения: <span class="citation" data-cites="amalfitano2015mobiguitar">(Amalfitano et al. 2015)</span>, <span class="citation" data-cites="choi2013guided">(Choi et al. 2013)</span>, <span class="citation" data-cites="moreira2014gui">(Moreira &amp; Paiva 2014)</span>, <span class="citation" data-cites="salvesen2015using">(Salvesen et al. 2015)</span>, <span class="citation" data-cites="moreira2017pattern">(Moreira et al. 2017)</span> <span class="citation" data-cites="memon2002gui">(Memon 2002)</span>, но тяхната практическа употреба и ефективност са незадоволителни <span class="citation" data-cites="choudhary2015automated">(Choudhary et al. 2015)</span>.</p>
+<p>Предложеният подход е вдъхновен от: - <span class="citation" data-cites="mnih2015human">(Mnih et al. 2015)</span> - използват се ИНМ за обучение на агент, който играе игри, надвишавайки възможностите на човек на някои от тях - <span class="citation" data-cites="pmlr-v70-shi17a">(Shi et al. 2017)</span> - среда, предоставяща възможност за създаване и обучение на агенти, изпълняващи задачи в уеб среди (напр. закупуване на самолетен билет) - <span class="citation" data-cites="chang2010gui">(Chang et al. 2010)</span> - визуален скриптов език за създаване на тестове, който използва изображения за определяне на следващо действие</p>
+<p>Текущият подход се различава по, това че:</p>
+<ul>
+<li>автоматизира напълно (или в голяма степен) създаването на ГПИ тестове</li>
+<li>предоставя среда, даващата информация за новото покритие на код при взимане на действие</li>
+<li>оценя несигурността за избиране на действие, което може да е полезно за:
+<ul>
+<li>Състояния в които е необходима допълнителна информация за да бъде продължено изучаването на средата (напр. екран изискваш потребителско име и парола)<br />
+</li>
+<li>достигнато е неочаквано състояние (аномалия), което може да е свързано с грешка в програмният код</li>
+</ul></li>
+</ul>
 <h2 id="модел"><span class="header-section-number">3.2</span> Модел</h2>
 <p>Нека имаме среда <span class="math inline">\(E\)</span>, намираща се в състояние <span class="math inline">\(s \in \mathbb{S}\)</span>, върху което могат да бъдат изпълнени действия от множеството от действия <span class="math inline">\(\mathbb{A}\)</span>. При избор на действие <span class="math inline">\(a \in \mathbb{A}\)</span>, средата <span class="math inline">\(E\)</span> предоставя награда <span class="math inline">\(r\)</span>, която приема стойности в интервала <span class="math inline">\([0; 1]\)</span> и преминава в ново състояние <span class="math inline">\(s&#39;\)</span> (в частност, <span class="math inline">\(s&#39; = s\)</span>, т.е. средата може да не премине в ново състояние). Множеството <span class="math inline">\(\mathbb{A}\)</span> е ненаредено и всяко <span class="math inline">\(a \in \mathbb{A}\)</span> може да се обозначи с единствено цяло число, като по този начин въвеждаме наредба в <span class="math inline">\(\mathbb{A}\)</span>. Всяко състояние на средата <span class="math inline">\(S\)</span> позволява изпълнението на действия <span class="math inline">\(\mathbb{A}\)</span>, които са предварително дефинирани. Множеството от всички възможни състояния на средата <span class="math inline">\(\mathbb{S}\)</span> е неизвестно.</p>
 <p>Нека след първоначално обучение от специалист имаме матрица на преходите <span class="math inline">\(D\)</span> с размерност <span class="math inline">\(n \times 3\)</span>, където <span class="math inline">\(n\)</span> е броя на преходите. Всеки ред от <span class="math inline">\(D\)</span> дефинира наредена тройка <span class="math inline">\((състояние, действие, награда)\)</span>, която описва получените награди при изпълнение на съответното действие за даденото състояние.</p>
@@ -610,6 +623,9 @@ References are automatically generated from the BibTex file (References.bib)
 <div id="ref-brockman2016openai">
 <p>Brockman, G. et al., 2016. OpenAI gym. <em>arXiv preprint arXiv:1606.01540</em>.</p>
 </div>
+<div id="ref-chang2010gui">
+<p>Chang, T.-H., Yeh, T. &amp; Miller, R.C., 2010. GUI testing using computer vision. In <em>Proceedings of the sigchi conference on human factors in computing systems</em>. ACM, pp. 1535–1544.</p>
+</div>
 <div id="ref-cho2014learning">
 <p>Cho, K. et al., 2014. Learning phrase representations using rnn encoder-decoder for statistical machine translation. <em>arXiv preprint arXiv:1406.1078</em>.</p>
 </div>
@@ -721,6 +737,12 @@ References are automatically generated from the BibTex file (References.bib)
 <div id="ref-molnar2015live">
 <p>Molnar, A.-J., 2015. Live visualization of gui application code coverage with guitracer. In <em>Software visualization (vissoft), 2015 ieee 3rd working conference on</em>. IEEE, pp. 185–189.</p>
 </div>
+<div id="ref-moreira2014gui">
+<p>Moreira, R.M. &amp; Paiva, A.C., 2014. A gui modeling dsl for pattern-based gui testing paradigm. In <em>Evaluation of novel approaches to software engineering (enase), 2014 international conference on</em>. IEEE, pp. 1–10.</p>
+</div>
+<div id="ref-moreira2017pattern">
+<p>Moreira, R. et al., 2017. Pattern-based gui testing: Bridging the gap between design and quality assurance.</p>
+</div>
 <div id="ref-neal2012bayesian">
 <p>Neal, R.M., 2012. <em>Bayesian learning for neural networks</em>, Springer Science &amp; Business Media.</p>
 </div>
@@ -735,6 +757,9 @@ References are automatically generated from the BibTex file (References.bib)
 </div>
 <div id="ref-rumelhart1985learning">
 <p>Rumelhart, D.E., Hinton, G.E. &amp; Williams, R.J., 1985. <em>Learning internal representations by error propagation</em>, DTIC Document.</p>
+</div>
+<div id="ref-salvesen2015using">
+<p>Salvesen, K. et al., 2015. Using dynamic symbolic execution to generate inputs in search-based gui testing. In <em>Proceedings of the eighth international workshop on search-based software testing</em>. IEEE Press, pp. 32–35.</p>
 </div>
 <div id="ref-sermanet2013pedestrian">
 <p>Sermanet, P. et al., 2013. Pedestrian detection with unsupervised multi-stage feature learning. In <em>Proceedings of the ieee conference on computer vision and pattern recognition</em>. pp. 3626–3633.</p>
