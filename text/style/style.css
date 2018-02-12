@@ -54,16 +54,14 @@ table caption {
     font-weight: bold;
 }
 table tr {
-    padding: 0;
-    margin: 0;
     background-color: #f0f0f0;
 }
 table tr.even {
     background-color: #fafafa;
 }
 table td {
-    margin: 0;
-    padding: 3px 5px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 p span.added {
@@ -118,6 +116,10 @@ p span.removed {
 }
 #TOC ul li a:hover {
     color: #008cff;
+}
+
+img {
+    text-align: center;
 }
 
 .figure {

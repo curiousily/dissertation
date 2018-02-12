@@ -23,8 +23,16 @@ from collections import Counter
 loop = asyncio.get_event_loop()
 browser = launch(headless=False)
 page = loop.run_until_complete(browser.newPage())
+
+
 loop.run_until_complete(page.goto('http://127.0.0.1:8080/'))
-# loop.run_until_complete(page.waitFor(3))
+
+
+# loop.run_until_complete(page.setViewport(
+    # dict(width=300, height=480, isMobile=True, hasTouch=True)
+# ))
+
+# loop.run_until_complete(page.waitFor(5))
 
 
 # loop.run_until_complete(page.waitFor(2))
@@ -67,7 +75,7 @@ elements = loop.run_until_complete(page.evaluate('''
             return names.join(" > ");
         }
 
-        var nodes = document.querySelectorAll("*")
+        var nodes = document.getElementsByClassName('mobile-content')[0].querySelectorAll("*")
         var elements = []
         nodes.forEach(function(v, _, _) {elements.push(v)})
         return elements.map((e) => {
@@ -84,7 +92,34 @@ elements = loop.run_until_complete(page.evaluate('''
     }
 '''))
 
-print(elements[0])
+viewport = loop.run_until_complete(page.evaluate('''
+    () => {
+        var e = document.getElementsByClassName('mobile-content')[0]
+        var bBox = e.getBoundingClientRect()
+        return {
+            x: bBox.x,
+            y: bBox.y,
+            width: bBox.width,
+            height: bBox.height
+        }
+    }
+'''))
+
+print(viewport)
+
+# print(elements[0])
+
+
+screen = loop.run_until_complete(page.screenshot())
+
+from io import BytesIO
+from PIL import Image
+import numpy as np
+
+img = np.array(Image.open(BytesIO(screen)))
+viewport_img = img[60:540, 250:550]
+Image.fromarray(viewport_img).show()
+print(viewport_img.shape)
 
 
 coverage = loop.run_until_complete(page.evaluate('() => {return window.__coverage__}'))

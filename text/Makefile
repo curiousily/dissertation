@@ -74,5 +74,6 @@ html:
 	rm -rf "$(OUTPUTDIR)/source"
 	mkdir "$(OUTPUTDIR)/source"
 	cp -r "$(INPUTDIR)/figures" "$(OUTPUTDIR)/source/figures"
+	cp -r "$(INPUTDIR)/assets" "$(OUTPUTDIR)"
 
 .PHONY: help pdf docx html tex
