@@ -188,11 +188,11 @@
                 </ul></li>
                 <li><a href="#избор-на-действие"><span class="toc-section-number">3</span> Избор на действие</a><ul>
                 <li><a href="#литературен-обзор-1"><span class="toc-section-number">3.1</span> Литературен обзор</a></li>
-                <li><a href="#модел"><span class="toc-section-number">3.2</span> Модел</a></li>
-                <li><a href="#пример"><span class="toc-section-number">3.3</span> Пример</a></li>
-                <li><a href="#обучение-на-модела"><span class="toc-section-number">3.4</span> Обучение на модела</a><ul>
-                <li><a href="#бейсова-невронна-мрежа-бнм"><span class="toc-section-number">3.4.1</span> Бейсова невронна мрежа (БНМ)</a></li>
+                <li><a href="#пример"><span class="toc-section-number">3.2</span> Пример</a></li>
+                <li><a href="#модел"><span class="toc-section-number">3.3</span> Модел</a><ul>
+                <li><a href="#бейсова-невронна-мрежа-бнм"><span class="toc-section-number">3.3.1</span> Бейсова невронна мрежа (БНМ)</a></li>
                 </ul></li>
+                <li><a href="#обучение-на-модела"><span class="toc-section-number">3.4</span> Обучение на модела</a></li>
                 <li><a href="#експерименти"><span class="toc-section-number">3.5</span> Експерименти</a></li>
                 <li><a href="#заключение"><span class="toc-section-number">3.6</span> Заключение</a></li>
                 </ul></li>
@@ -436,12 +436,7 @@ Table x.x Short title of the figure . . . </p>
 <li>достигнато е неочаквано състояние (аномалия), което може да е свързано с грешка в програмният код</li>
 </ul></li>
 </ul>
-<h2 id="модел"><span class="header-section-number">3.2</span> Модел</h2>
-<p>Нека имаме среда <span class="math inline">\(E\)</span>, намираща се в състояние <span class="math inline">\(s \in \mathbb{S}\)</span>, върху което могат да бъдат изпълнени действия от множеството от действия <span class="math inline">\(\mathbb{A}\)</span>. При избор на действие <span class="math inline">\(a \in \mathbb{A}\)</span>, средата <span class="math inline">\(E\)</span> предоставя награда <span class="math inline">\(r\)</span>, която приема стойности в интервала <span class="math inline">\([0; 1]\)</span> и преминава в ново състояние <span class="math inline">\(s&#39;\)</span> (в частност, <span class="math inline">\(s&#39; = s\)</span>, т.е. средата може да не премине в ново състояние). Множеството <span class="math inline">\(\mathbb{A}\)</span> е ненаредено и всяко <span class="math inline">\(a \in \mathbb{A}\)</span> може да се обозначи с единствено цяло число, като по този начин въвеждаме наредба в <span class="math inline">\(\mathbb{A}\)</span>. Всяко състояние на средата <span class="math inline">\(S\)</span> позволява изпълнението на действия <span class="math inline">\(\mathbb{A}\)</span>, които са предварително дефинирани. Множеството от всички възможни състояния на средата <span class="math inline">\(\mathbb{S}\)</span> е неизвестно.</p>
-<p>Нека след първоначално обучение от специалист имаме матрица на преходите <span class="math inline">\(D\)</span> с размерност <span class="math inline">\(n \times 3\)</span>, където <span class="math inline">\(n\)</span> е броя на преходите. Всеки ред от <span class="math inline">\(D\)</span> дефинира наредена тройка <span class="math inline">\((състояние, действие, награда)\)</span>, която описва получените награди при изпълнение на съответното действие за даденото състояние.</p>
-<p>Нека имаме състояние <span class="math inline">\(s&#39;\)</span>, за което <span class="math inline">\(D\)</span> не съдържа информация. В този случай, целта е да намерим подмножеството от действията, така че изпълнението им да води до получаване на оптимална награда от средата <span class="math inline">\(E\)</span>.</p>
-<p>Задачата е решена, когато <span class="math inline">\(D\)</span> съдържа информация за всички състояния <span class="math inline">\(s \in \mathbb{S}\)</span>.</p>
-<h2 id="пример"><span class="header-section-number">3.3</span> Пример</h2>
+<h2 id="пример"><span class="header-section-number">3.2</span> Пример</h2>
 <figure>
 <img src="./source/figures/flower_store_navigation.png" alt="Примерно мобилно приложение предоставящо възможност за поръчка на цветя ." /><figcaption><em>Примерно мобилно приложение предоставящо възможност за поръчка на цветя .</em></figcaption>
 </figure>
@@ -515,9 +510,14 @@ Table x.x Short title of the figure . . . </p>
 <img src="./source/figures/flower_store_transitions.png" alt="Преходи на средата описани в D" /><figcaption><em>Преходи на средата описани в <span class="math inline">\(D\)</span></em></figcaption>
 </figure>
 <p>Получаваме ново състояние, което не е описано в <span class="math inline">\(D\)</span>. Свеждаме задачата до избор на действие, което ще ни даде максимална награда за текущото състояние.</p>
+<h2 id="модел"><span class="header-section-number">3.3</span> Модел</h2>
+<p>Нека имаме среда <span class="math inline">\(E\)</span>, намираща се в състояние <span class="math inline">\(s \in \mathbb{S}\)</span>, върху което могат да бъдат изпълнени действия от множеството от действия <span class="math inline">\(\mathbb{A}\)</span>. При избор на действие <span class="math inline">\(a \in \mathbb{A}\)</span>, средата <span class="math inline">\(E\)</span> предоставя награда <span class="math inline">\(r\)</span>, която приема стойности в интервала <span class="math inline">\([0; 1]\)</span> и преминава в ново състояние <span class="math inline">\(s&#39;\)</span> (в частност, <span class="math inline">\(s&#39; = s\)</span>, т.е. средата може да не премине в ново състояние). Множеството <span class="math inline">\(\mathbb{A}\)</span> е ненаредено и всяко <span class="math inline">\(a \in \mathbb{A}\)</span> може да се обозначи с единствено цяло число, като по този начин въвеждаме наредба в <span class="math inline">\(\mathbb{A}\)</span>. Всяко състояние на средата <span class="math inline">\(S\)</span> позволява изпълнението на действия <span class="math inline">\(\mathbb{A}\)</span>, които са предварително дефинирани. Множеството от всички възможни състояния на средата <span class="math inline">\(\mathbb{S}\)</span> е неизвестно.</p>
+<p>Нека след първоначално обучение от специалист имаме матрица на преходите <span class="math inline">\(D\)</span> с размерност <span class="math inline">\(n \times 3\)</span>, където <span class="math inline">\(n\)</span> е броя на преходите. Всеки ред от <span class="math inline">\(D\)</span> дефинира наредена тройка <span class="math inline">\((състояние, действие, награда)\)</span>, която описва получените награди при изпълнение на съответното действие за даденото състояние.</p>
+<p>Нека имаме състояние <span class="math inline">\(s&#39;\)</span>, за което <span class="math inline">\(D\)</span> не съдържа информация. В този случай, целта е да намерим подмножеството от действията, така че изпълнението им да води до получаване на оптимална награда от средата <span class="math inline">\(E\)</span>.</p>
+<h3 id="бейсова-невронна-мрежа-бнм"><span class="header-section-number">3.3.1</span> Бейсова невронна мрежа (БНМ)</h3>
+<p>Задачата се свежда до намиране на действие, което предоставя най-висока награда за текущото състояние. Допълнително, вероятностното разпределение над всички възможни действия би позволило оценяване на несигурността при избор на действие. С тази информация може да решим кога да използваме знанията за средата и кога да я изучаваме <span class="citation" data-cites="2018arXiv180204412A">(Azizzadenesheli et al. 2018)</span>. Когато вероятността е по-голяма ще е по-вероятно да изберем конкретното действие.</p>
+<p>Ще използваме бейсова невронна мрежа със следната архитектура:</p>
 <h2 id="обучение-на-модела"><span class="header-section-number">3.4</span> Обучение на модела</h2>
-<p>Задачата се свежда до намиране на действие, което предоставя най-висока награда за текущото състояние. Допълнително, вероятностното разпределение над всички възможни действия би позволило оценяване на несигурността при избор на действие. С тази информация може да решим кога да използваме знанията за средата и кога да я изучаваме []. Когато вероятността е по-голяма ще е по-вероятно да изберем конкретното действие.</p>
-<h3 id="бейсова-невронна-мрежа-бнм"><span class="header-section-number">3.4.1</span> Бейсова невронна мрежа (БНМ)</h3>
 <h2 id="експерименти"><span class="header-section-number">3.5</span> Експерименти</h2>
 <h2 id="заключение"><span class="header-section-number">3.6</span> Заключение</h2>
 <h1 id="среда-за-изучаване-rl-exploration-на-гпи-приложения"><span class="header-section-number">4</span> Среда за изучаване (RL exploration) на ГПИ приложения</h1>
@@ -622,6 +622,9 @@ References are automatically generated from the BibTex file (References.bib)
 </div>
 <div id="ref-anonymous2018efficient">
 <p>Anonymous, 2018. Efficient exploration through bayesian deep q-networks. <em>International Conference on Learning Representations</em>. Available at: <a href="https://openreview.net/forum?id=Bk6qQGWRb" class="uri">https://openreview.net/forum?id=Bk6qQGWRb</a>.</p>
+</div>
+<div id="ref-2018arXiv180204412A">
+<p>Azizzadenesheli, K., Brunskill, E. &amp; Anandkumar, A., 2018. Efficient Exploration through Bayesian Deep Q-Networks. <em>ArXiv e-prints</em>.</p>
 </div>
 <div id="ref-bellemare2017distributional">
 <p>Bellemare, M.G., Dabney, W. &amp; Munos, R., 2017. A distributional perspective on reinforcement learning. <em>arXiv preprint arXiv:1707.06887</em>.</p>
