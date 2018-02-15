@@ -7,7 +7,72 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
                         <title>01_title_page</title>
         <style type="text/css">code{white-space: pre;}</style>
-                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+                            <style type="text/css">
+            a.sourceLine { display: inline-block; line-height: 1.25; }
+            a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+            a.sourceLine:empty { height: 1.2em; position: absolute; }
+            .sourceCode { overflow: visible; }
+            code.sourceCode { white-space: pre; position: relative; }
+            div.sourceCode { margin: 1em 0; }
+            pre.sourceCode { margin: 0; }
+            @media screen {
+            div.sourceCode { overflow: auto; }
+            }
+            @media print {
+            code.sourceCode { white-space: pre-wrap; }
+            a.sourceLine { text-indent: -1em; padding-left: 1em; }
+            }
+            pre.numberSource a.sourceLine
+              { position: relative; }
+            pre.numberSource a.sourceLine:empty
+              { position: absolute; }
+            pre.numberSource a.sourceLine::before
+              { content: attr(data-line-number);
+                position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+                border: none; pointer-events: all;
+                -webkit-touch-callout: none; -webkit-user-select: none;
+                -khtml-user-select: none; -moz-user-select: none;
+                -ms-user-select: none; user-select: none;
+                padding: 0 4px; width: 4em;
+                color: #aaaaaa;
+              }
+            pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+            div.sourceCode
+              {  }
+            @media screen {
+            a.sourceLine::before { text-decoration: underline; }
+            }
+            code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+            code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+            code span.at { color: #7d9029; } /* Attribute */
+            code span.bn { color: #40a070; } /* BaseN */
+            code span.bu { } /* BuiltIn */
+            code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+            code span.ch { color: #4070a0; } /* Char */
+            code span.cn { color: #880000; } /* Constant */
+            code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+            code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+            code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+            code span.dt { color: #902000; } /* DataType */
+            code span.dv { color: #40a070; } /* DecVal */
+            code span.er { color: #ff0000; font-weight: bold; } /* Error */
+            code span.ex { } /* Extension */
+            code span.fl { color: #40a070; } /* Float */
+            code span.fu { color: #06287e; } /* Function */
+            code span.im { } /* Import */
+            code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+            code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+            code span.op { color: #666666; } /* Operator */
+            code span.ot { color: #007020; } /* Other */
+            code span.pp { color: #bc7a00; } /* Preprocessor */
+            code span.sc { color: #4070a0; } /* SpecialChar */
+            code span.ss { color: #bb6688; } /* SpecialString */
+            code span.st { color: #4070a0; } /* String */
+            code span.va { color: #19177c; } /* Variable */
+            code span.vs { color: #4070a0; } /* VerbatimString */
+            code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+            </style>
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
                             <style>
             body {
                 font-family: Georgia;
@@ -190,11 +255,14 @@
                 <li><a href="#литературен-обзор-1"><span class="toc-section-number">3.1</span> Литературен обзор</a></li>
                 <li><a href="#пример"><span class="toc-section-number">3.2</span> Пример</a></li>
                 <li><a href="#модел"><span class="toc-section-number">3.3</span> Модел</a><ul>
-                <li><a href="#бейсова-невронна-мрежа-бнм"><span class="toc-section-number">3.3.1</span> Бейсова невронна мрежа (БНМ)</a></li>
+                <li><a href="#бейсова-изкуствена-невронна-мрежа-бинм"><span class="toc-section-number">3.3.1</span> Бейсова изкуствена невронна мрежа (БИНМ)</a></li>
                 </ul></li>
-                <li><a href="#обучение-на-модела"><span class="toc-section-number">3.4</span> Обучение на модела</a></li>
-                <li><a href="#експерименти"><span class="toc-section-number">3.5</span> Експерименти</a></li>
-                <li><a href="#заключение"><span class="toc-section-number">3.6</span> Заключение</a></li>
+                <li><a href="#експерименти"><span class="toc-section-number">3.4</span> Експерименти</a><ul>
+                <li><a href="#обучение"><span class="toc-section-number">3.4.1</span> Обучение</a></li>
+                <li><a href="#оценка"><span class="toc-section-number">3.4.2</span> Оценка</a></li>
+                <li><a href="#резултати"><span class="toc-section-number">3.4.3</span> Резултати</a></li>
+                </ul></li>
+                <li><a href="#заключение"><span class="toc-section-number">3.5</span> Заключение</a></li>
                 </ul></li>
                 <li><a href="#среда-за-изучаване-rl-exploration-на-гпи-приложения"><span class="toc-section-number">4</span> Среда за изучаване (RL exploration) на ГПИ приложения</a><ul>
                 <li><a href="#android-специфична-среда"><span class="toc-section-number">4.1</span> Android специфична среда</a></li>
@@ -415,21 +483,26 @@ Table x.x Short title of the figure . . . </p>
 <li>Има ли разлики в изходните данни? (Change in hierarchy/image screenshot)</li>
 </ul>
 <h1 id="избор-на-действие"><span class="header-section-number">3</span> Избор на действие</h1>
-<p>Проверката за качество на софтуерни продукти често се извършва посредством автоматизирани, полуавтоматизирани или ръчно изпълняващи се тестове. Основна цел при създаване и изпълнение на тези тестове е постигане на високо или пълно покритие на програмен код <span class="citation" data-cites="zhu1997software">(Zhu et al. 1997)</span>. От своя страна, това покритие повишава възможността програмата да не достига непредвидени състояния и притежава желаната функционалност <span class="citation" data-cites="ohba1982software">(Ohba 1982)</span>.</p>
-<p>Създаването на тестове, които проверяват цялостната функционалност на системата често се извършва от специалисти по проверка на качеството (QA). Те създават автоматизирани или ръчно изпълняват тестове, спрямо предварително създадени спецификации. Част от тестовете, обхващащи целият софтуерен продукт се извършват спрямо графичната потребителски интерфейс (ГПИ), който той предоставя. Тези тестове (наречени ГПИ тестове (GUI tests) симулират взаимодействието на потребител с програмата.</p>
+<p>Проверката за качество на софтуерни продукти често се извършва посредством автоматизирани, полуавтоматизирани или ръчно изпълняващи се тестове. Основна цел при създаване и изпълнение на тези тестове е постигане на високо или пълно покритие на създадения програмен код <span class="citation" data-cites="zhu1997software">(Zhu et al. 1997)</span>. От своя страна, това покритие повишава възможността програмата да не достига непредвидени състояния и да притежава желаната функционалност <span class="citation" data-cites="ohba1982software">(Ohba 1982)</span>.</p>
+<p>Създаването на тестове, които проверяват цялостната функционалност на системата често се извършва от специалисти по проверка на качеството (QA). Те създават автоматизирани тестове или изпълняват проверката ръчно, спрямо предварително създадени спецификации. Част от тестовете, обхващащи целия софтуерен продукт се извършват спрямо графичния потребителски интерфейс (ГПИ), който този софтуер предоставя. Тези тестове (наречени ГПИ тестове (GUI tests)) симулират взаимодействието на потребител с програмата.</p>
 <p>Създаването на автоматизирани ГПИ тестове е обвързано с трудности, като често променящи се визуални елементи, забавено изпълнение, достигане на непредвидени състояния на средата и др. <span class="citation" data-cites="memon2002gui">(Memon 2002)</span>. Често, поради тази причини подобен вид тестове се изпълняват изцяло ръчно или полуавтоматизирано, което изисква взаимодействие с експерт.</p>
-<p>QA експертът взаимодейства с ГПИ чрез поредица от действия (извършени чрез мишка, клавиатура, докосвания върху екран и/или др.), които променят ГПИ и водят до друго състояние (в частност, нов екран). Когато това състояние не е наблюдавано до момента, покритието на програмен код се увеличава, поради нуждата от изпълнение му за създаване на самото състояние.</p>
+<p>QA експертът взаимодейства с ГПИ чрез поредица от действия (извършени чрез мишка, клавиатура, докосвания върху екран и/или др.), които променят ГПИ и водят до друго нейно състояние (в частност, нов екран). Когато това състояние не е наблюдавано до момента, покритието на програмен код се увеличава, поради нуждата от изпълнение му за създаване на самото състояние.</p>
 <p>Тогава, целта при създаване на ГПИ тестове може да се определи като посещаване на всяко състояние на визуалната среда поне веднъж. Повторно наблюдение на дадено състояние може да е необходимо поради допълнителни възможни действия. Действията, които се избират, определят последователността на наблюдаваните състояния, както и бързодействието на текущия тест (минимален брой на взети действия за постигане на целта).</p>
 <p>В тази част от работата ще създадем модел, който избира следващо действие, когато средата се намира в определено състояние. Това действие трябва да бъде избрано, така че да максимизира увеличението на покритие на програмен код и минимизира нуждата възможността за попадане във вече наблюдавано състояние. Състоянието на средата ще бъде закодирано чрез матрица, отговаряща на елементите в нея. Това е опростен подход към решаване на поставената задача, като той ще бъде разширен в следващата глава.</p>
-<p>Решаването на задачата използва т.нар подход базиран на наличните данни (data-driven). Конкретно, създаваме БИНМ, която приема състоянието на средата като входни параметри и изчислява апостериорно разпределение за оценката на (до колко добро е) всяко от възможните действия. Обучението на модела се извършва чрез предварително събрани данни.</p>
+<p>За решаване на задачата ще използваме подход управляван от наличните данни (data-driven approach). Конкретно, създаваме БИНМ (Бейсова Изкуствена Невронна Мрежа), която приема състоянието на средата като входен параметър и изчислява апостериорните разпределения на вероятностите за възможните действия за да оценим до колко добро е всяко от тях. Обучението на БИНМ изисква предварително събрани данни.</p>
 <h2 id="литературен-обзор-1"><span class="header-section-number">3.1</span> Литературен обзор</h2>
 <p>Съществуват различни подходи за автоматизирано създаване на ГПИ тестове за мобилни и уеб приложения: <span class="citation" data-cites="amalfitano2015mobiguitar">(Amalfitano et al. 2015)</span>, <span class="citation" data-cites="choi2013guided">(Choi et al. 2013)</span>, <span class="citation" data-cites="moreira2014gui">(Moreira &amp; Paiva 2014)</span>, <span class="citation" data-cites="salvesen2015using">(Salvesen et al. 2015)</span>, <span class="citation" data-cites="moreira2017pattern">(Moreira et al. 2017)</span> <span class="citation" data-cites="memon2002gui">(Memon 2002)</span>, но тяхната практическа употреба и ефективност са незадоволителни <span class="citation" data-cites="choudhary2015automated">(Choudhary et al. 2015)</span>.</p>
-<p>Предложеният подход е вдъхновен от: - <span class="citation" data-cites="mnih2015human">(Mnih et al. 2015)</span> - използват се ИНМ за обучение на агент, който играе игри, надвишавайки възможностите на човек на някои от тях - <span class="citation" data-cites="pmlr-v70-shi17a">(Shi et al. 2017)</span> - среда, предоставяща възможност за създаване и обучение на агенти, изпълняващи задачи в уеб среди (напр. закупуване на самолетен билет) - <span class="citation" data-cites="chang2010gui">(Chang et al. 2010)</span> - визуален скриптов език за създаване на тестове, който използва изображения за определяне на следващо действие</p>
-<p>Текущият подход се различава по, това че:</p>
+<p>Предложеният подход е вдъхновен от работата представена в:</p>
+<ul>
+<li><span class="citation" data-cites="mnih2015human">(Mnih et al. 2015)</span> - използват се ИНМ за обучение на агент, който играе игри, надвишавайки възможностите на човек в някои от тези игри</li>
+<li><span class="citation" data-cites="pmlr-v70-shi17a">(Shi et al. 2017)</span> - среда, предоставяща възможност за създаване и обучение на агенти, изпълняващи задачи в уеб среди (напр. закупуване на самолетен билет)</li>
+<li><span class="citation" data-cites="chang2010gui">(Chang et al. 2010)</span> - визуален скриптов език за създаване на тестове, който използва изображения за определяне на следващо действие</li>
+</ul>
+<p>Текущият подход се различава по това, че:</p>
 <ul>
 <li>автоматизира напълно (или в голяма степен) създаването на ГПИ тестове</li>
 <li>предоставя среда, даващата информация за новото покритие на код при взимане на действие</li>
-<li>оценя несигурността за избиране на действие, което може да е полезно за:
+<li>оценя несигурността (uncertainty) за избиране на действие, което може да е полезно за:
 <ul>
 <li>Състояния в които е необходима допълнителна информация за да бъде продължено изучаването на средата (напр. екран изискваш потребителско име и парола)<br />
 </li>
@@ -437,14 +510,16 @@ Table x.x Short title of the figure . . . </p>
 </ul></li>
 </ul>
 <h2 id="пример"><span class="header-section-number">3.2</span> Пример</h2>
+<p>Ще разгледаме мобилно приложение предоставящо възможност за поръчка на цветя с ГПИ представен на .</p>
 <figure>
-<img src="./source/figures/flower_store_navigation.png" alt="Примерно мобилно приложение предоставящо възможност за поръчка на цветя ." /><figcaption><em>Примерно мобилно приложение предоставящо възможност за поръчка на цветя .</em></figcaption>
+<img src="./source/figures/flower_store_navigation.png" alt="Примерен ГПИ на мобилно приложение предоставящо възможност за поръчка на цветя ." /><figcaption><em>Примерен ГПИ на мобилно приложение предоставящо възможност за поръчка на цветя .</em></figcaption>
 </figure>
-<p>Нека имаме мобилното приложение представено на . То се състои от 4 различни състояния, като началното е маркирано със <em>Start</em>.</p>
+<p>ГПИ се състои от 4 различни състояния, като началното е маркирано със <em>Start</em>.</p>
+<p>Ще опростим задачата, като приложим “решетка”, която разделя изображенията на средата на 4 правоъгълника с равни лица, визуализирани на .</p>
 <figure>
 <img src="./source/figures/flower_store_grid.png" alt="Решетка приложена върху състотяние на средата" /><figcaption><em>Решетка приложена върху състотяние на средата</em></figcaption>
 </figure>
-<p>Ще опростим задачата, като приложим “решетка”, която разделя изображенията на средата на 4 равни правоъгълника. Това ни позволява да изпълняваме 5 различни действия:</p>
+<p>Това представяне ни позволява да изпълняваме следните 5 различни действия:</p>
 <ul>
 <li><span class="math inline">\(a_1\)</span> - клик горе в ляво</li>
 <li><span class="math inline">\(a_2\)</span> - клик горе в дясно</li>
@@ -452,7 +527,7 @@ Table x.x Short title of the figure . . . </p>
 <li><span class="math inline">\(a_4\)</span> - клик долу в дясно</li>
 <li><span class="math inline">\(a_5\)</span> - връщане назад</li>
 </ul>
-<p>Получаваме изображение . Ще закодираме съдържанието на всяка клетка в решетка като:</p>
+<p>Ще закодираме съдържанието на всяка клетка в решетката като:</p>
 <ul>
 <li>w - бял цвят, върху който не могат да бъдат предприемани действия (изображение или празно пространство)</li>
 <li>b - син цвят, който представя текстова информация</li>
@@ -462,7 +537,121 @@ Table x.x Short title of the figure . . . </p>
 <figure>
 <img src="./source/figures/flower_store_encoding.png" alt="Закодиране на състояние Start" /><figcaption><em>Закодиране на състояние Start</em></figcaption>
 </figure>
-<p>Нека след първоначално обучение от специалист качество на софтуер (QA expert) имаме матрицата на преходите D, дефинирана като:</p>
+<p>Нека след първоначално обучение от специалист качество на софтуер (QA expert) имаме матрицата на преходите <span class="math inline">\(T\)</span>, дефинирана като:</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(s_{x_1}\)</span></th>
+<th><span class="math inline">\(s_{x_2}\)</span></th>
+<th><span class="math inline">\(s_{x_3}\)</span></th>
+<th><span class="math inline">\(s_{x_4}\)</span></th>
+<th>action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>b</td>
+<td>w</td>
+<td>g</td>
+<td>g</td>
+<td><span class="math inline">\(a_3\)</span></td>
+</tr>
+<tr class="even">
+<td>b</td>
+<td>w</td>
+<td>w</td>
+<td>b</td>
+<td><span class="math inline">\(a_5\)</span></td>
+</tr>
+<tr class="odd">
+<td>b</td>
+<td>w</td>
+<td>g</td>
+<td>g</td>
+<td><span class="math inline">\(a_4\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>където <span class="math inline">\(s = (s_{x_1}, s_{x_2}, s_{x_3}, s_{x_4})\)</span> е вектор от характеристиките на състоянието</p>
+<p>Преходите от матрица <span class="math inline">\(T\)</span> може да се представят като:</p>
+<figure>
+<img src="./source/figures/flower_store_transitions.png" alt="Преходи на средата описани в T" /><figcaption><em>Преходи на средата описани в <span class="math inline">\(T\)</span></em></figcaption>
+</figure>
+<p>Получаваме ново състояние, което не е описано в <span class="math inline">\(T\)</span>. Свеждаме задачата до пресмятане на апостериорните разпределения на действията и намиране на оптималното действие.</p>
+<h2 id="модел"><span class="header-section-number">3.3</span> Модел</h2>
+<p>Нека имаме среда <span class="math inline">\(E\)</span>, намираща се в състояние <span class="math inline">\(s \in \mathbb{S}\)</span>, върху което могат да бъдат изпълнени действия от множеството от действия <span class="math inline">\(\mathbb{A}\)</span>. При избор на действие <span class="math inline">\(a \in \mathbb{A}\)</span>, средата <span class="math inline">\(E\)</span> преминава в ново състояние <span class="math inline">\(s&#39;\)</span> (в частност, <span class="math inline">\(s&#39; = s\)</span>, т.е. средата може да не премине в ново състояние). Множеството <span class="math inline">\(\mathbb{A}\)</span> е ненаредено и всяко <span class="math inline">\(a \in \mathbb{A}\)</span> може да се обозначи с единствено цяло число, като по този начин въвеждаме наредба в <span class="math inline">\(\mathbb{A}\)</span>. Всяко състояние на средата <span class="math inline">\(S\)</span> позволява изпълнението на действия <span class="math inline">\(\mathbb{A}\)</span>, които са предварително дефинирани. Множеството от всички възможни състояния на средата <span class="math inline">\(\mathbb{S}\)</span> е неизвестно.</p>
+<p>Нека след първоначално обучение от специалист имаме матрица на преходите <span class="math inline">\(T\)</span> с размерност <span class="math inline">\(n \times 2\)</span>, където <span class="math inline">\(n\)</span> е броя на преходите. Всеки ред от <span class="math inline">\(T\)</span> дефинира наредена двойка <span class="math inline">\((състояние, действие)\)</span>, която описва оптималните действия за състоянията.</p>
+<p>Нека имаме състояние <span class="math inline">\(s&#39;\)</span>, за което <span class="math inline">\(T\)</span> не съдържа информация. В този случай, целта е да намерим наредено подмножество от подходящи действия.</p>
+<h3 id="бейсова-изкуствена-невронна-мрежа-бинм"><span class="header-section-number">3.3.1</span> Бейсова изкуствена невронна мрежа (БИНМ)</h3>
+<p>Вероятностното разпределение над всички възможни действия би позволило оценяване на несигурността при избор на действие. С тази информация може да решим кога да използваме знанията за средата и кога да я изучаваме <span class="citation" data-cites="2018arXiv180204412A">(Azizzadenesheli et al. 2018)</span>. Когато вероятността е по-голяма ще е по-вероятно да изберем конкретното действие.</p>
+<p>Ще използваме бейсова невронна мрежа със следната архитектура:</p>
+<ul>
+<li>входен слой: слой с 12 неврона</li>
+<li>първи скрит слой: пълно свързан слой (fully-connected) с 20 неврона</li>
+<li>втори скрит слой: пълно свързан слой (fully-connected) с 15 неврона</li>
+<li>изходен слой: слой с 5 неврона (броя на възможните действия)</li>
+</ul>
+<p>Прилагаме ReLU активизационна функция и отпадане (dropout) върху първи и втори скрит слой. Предложената БНМ може да се представи в PyTorch като:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">class</span> Model(nn.Module):</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">        <span class="bu">super</span>(Model, <span class="va">self</span>).<span class="fu">__init__</span>()</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">        <span class="va">self</span>.fc1 <span class="op">=</span> nn.Linear(<span class="dv">12</span>, <span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">        <span class="va">self</span>.drop1 <span class="op">=</span> nn.Dropout(p<span class="op">=</span><span class="fl">0.2</span>)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">        <span class="va">self</span>.fc2 <span class="op">=</span> nn.Linear(<span class="dv">20</span>, <span class="dv">15</span>)</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">        <span class="va">self</span>.bn <span class="op">=</span> nn.BatchNorm1d(<span class="dv">15</span>)</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">        <span class="va">self</span>.drop2 <span class="op">=</span> nn.Dropout(p<span class="op">=</span><span class="fl">0.2</span>)</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">        <span class="va">self</span>.fc3 <span class="op">=</span> nn.Linear(<span class="dv">15</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">    <span class="kw">def</span> forward(<span class="va">self</span>, x):</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">        x <span class="op">=</span> F.relu(<span class="va">self</span>.drop1(<span class="va">self</span>.fc1(x)))</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">        x <span class="op">=</span> F.relu(<span class="va">self</span>.bn(<span class="va">self</span>.drop2(<span class="va">self</span>.fc2(x))))</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">        <span class="cf">return</span> <span class="va">self</span>.fc3(x)</a></code></pre></div>
+<h2 id="експерименти"><span class="header-section-number">3.4</span> Експерименти</h2>
+<h3 id="обучение"><span class="header-section-number">3.4.1</span> Обучение</h3>
+<p>За оптимизатор използваме <em>SGD</em> със скрост на обучение (learning rate) <span class="math inline">\(lr=0.1\)</span> и движеща сила (momentum) <span class="math inline">\(m=0.5\)</span>. За функция оценяща грешката използваме Кръстосана Ентропия? (Cross-Entropy). Описаният модел обучаваме за <em>1,000</em> епохи.</p>
+<h3 id="оценка"><span class="header-section-number">3.4.2</span> Оценка</h3>
+<figure>
+<img src="./source/figures/training_loss.png" alt="Промяна на грешката по време на обучение" /><figcaption><em>Промяна на грешката по време на обучение</em></figcaption>
+</figure>
+<h3 id="резултати"><span class="header-section-number">3.4.3</span> Резултати</h3>
+<figure>
+<img src="./source/figures/posterior_actions_dist.png" alt="Апостериорно разпределение за всяко действие" /><figcaption><em>Апостериорно разпределение за всяко действие</em></figcaption>
+</figure>
+<figure>
+<img src="./source/figures/posterior_actions_box.png" alt="Апостериорно разпределение за всяко действие" /><figcaption><em>Апостериорно разпределение за всяко действие</em></figcaption>
+</figure>
+<h2 id="заключение"><span class="header-section-number">3.5</span> Заключение</h2>
+<h1 id="среда-за-изучаване-rl-exploration-на-гпи-приложения"><span class="header-section-number">4</span> Среда за изучаване (RL exploration) на ГПИ приложения</h1>
+<p>Много от съществуващите системи за автоматизирано тестване на Android приложения се опитват да изградят решения, които взимат предвид недостатъците при тестване на приложения. Някои от трудностите повече не съществуват благодарение на напредъка на модерния компютърен хардуер, а други могат да бъдат решени много по-ефективно благодарение на новъведени инструменти за разработка за Android. Например, <strong>SwiftHand</strong> <span class="citation" data-cites="choi2013guided">(Choi et al. 2013)</span> се опитва да намали нуждата от преинсталиране на приложението върху устройството. В по-новите си версии, adb, предлага способ за изчистване на състоянието на дадено приложение, без нужда от преинсталирането му.</p>
+<p>От особена важност за изграждане на алгоритъм в среда за подсиленото обучение е наличието на награда. Повечето от изградените системи се опитват да максимизират покритието на код. В практиката тази метрика е важна, но и недостатъчна. Фактът, че дадена част от програмния код се е изпълнила и не е предизвикала грешка в програмата не означава, че поведението на програмата е правилно (или не се е променило без това бъде желания ефект от разработчиците).</p>
+<p>За нуждите на текущата работа и всеки желаещ да използва се предлага обща среда за изучване/тестване на мобилни приложения. Поради липсата на други свободни инструменти (или такива, които са използваеми). Системата е свободна за използване, с отворен код и може да бъде намерена на <a href="https://github.com/appgym/appgym" class="uri">https://github.com/appgym/appgym</a>.</p>
+<h2 id="android-специфична-среда"><span class="header-section-number">4.1</span> Android специфична среда</h2>
+<p>Средата се състои от два основни компонента - клиент и сървър. Сървърът работи върху Android устройството и предоставя данни за постигнатото покритие на код, изпълнение на действията, генерирани от модела и изображение за текущото състояние. Клиентът предоставя възможните действия на модела, както и комуникира със сървъра за да представи неговата функционалност.</p>
+<p>Клиентът предоставя интерфейс към средата подобен на този на OpenAI gym <span class="citation" data-cites="brockman2016openai">(Brockman et al. 2016)</span>. Двата основни метода, които реализира са <code>reset()</code> и <code>step(action)</code>. <code>reset()</code> предоставя възможност на средата да се върне до първоначално състояние. Това се постига чрез спиране на приложението (ако то е стартирано), изтриване на данните поддържащи състоянието му, стартирането му и предоставяне на образ от екрана, както и възможните действия за състоянието. Изброената функционалност се реализира посредством adb команди и библиотеката <code>uiautomator</code> <a href="https://github.com/xiaocong/uiautomator" class="uri">https://github.com/xiaocong/uiautomator</a>. Методът <code>step(action)</code> изпълнява избраното действие и предоставя новото състояние на средата, заедно с получената награда и новите възможни действия. Тук също се взима решение дали текущия епизод от обучението е приключил.</p>
+<p>Множеството от възможните действия за текущото състояние се базират на броя и видовете графични елементи в него. Всеки елемент върху който може да се извърши докосване, задържане, скролиране, влачене и т.н. се превръща в действие. Множеството от графични елементи се извлича посредством библиотеката <code>uiautomator</code>.</p>
+<p>Наградата за всяка избрана стъпка пряко се базира на покритието на код за текущия епизод. Стойността се изменя в интервала <span class="math inline">\([0;1.0]\)</span> и е нарастваща. Получаването на наградата след всяка стъпка е необходимо за обучение на модела. Скоростта на изпълнение пряко влияе на общото бързодействие на системата. За намиране на текущото покритие на код и изграждане на доклад се използва <code>JaCoCo</code> <span class="citation" data-cites="hoffmann2009jacoco">(Hoffmann et al. 2009)</span>. <code>JaCoCo</code> е интегриран в инструментите за разработка на Android и се използва основно, когато е нужно покритие на код базирано на преминали тестове.</p>
+<p>За целта на текущата работата бяха направени някои промени, които предоставят възможност за извличане на необходимите данни, докато програмата се изпълнява и не е в тестова среда. Няколко подхода бяха изпробвани за изграждане на крайните доклади. Първоначално бяха използвани adb команди и генериране на доклад посредством gradle задача. Бързодействието не беше задоволително - необходими бяха около 2 секунди на съвременен мобилен компютър. Около повината от времето се губеше в генериране на доклад, който предоставя повече от необходимата информация.</p>
+<p>Крайното решение използва комбинация от <code>HTTP</code> сървър на устройството, клиент, специализиран начин за записване на данните за покритие на код и специализиран генератор за доклади. Допълнително бързодействие се постига чрез Nailgun <a href="https://github.com/martylamb/nailgun" class="uri">https://github.com/martylamb/nailgun</a> сървър, който изпълнява генератора за доклади. Така описаните оптимизации извършват необходимата работа за около 20 милисекунди (или 0.02 секунди) на същия компютър.</p>
+<p>Взимането на текущото състояние се състой в направата на изображение на текущия екран на устройството. Тази задача отново се извършва от библиотеката <code>uiautomator</code>. Изображението може да бъде намалено до желани размери в зависимост от изискванията на задачата. Така полученото изображение се представя за текущо състояние под формата на тензор.</p>
+<h2 id="web-специфична-среда"><span class="header-section-number">4.2</span> Web специфична среда</h2>
+<p>Web средата предоставя възможност за изучаване на мобилни web приложения. Тя използва библиотеката <code>pyppeteer</code>, която предоставя автоматизиран достъп до Web Browser.</p>
+<p>Системата AppGym е структурирана така че да може да се използва с други мобилни и настолни операционни системи. Интерфейсът е много сходен до този на OpenAI gym. Възможно е рамката да бъде променена, така че да бъде използвана за други задачи и други цели.</p>
+<h1 id="изучаване-на-гпи-среди"><span class="header-section-number">5</span> Изучаване на ГПИ среди</h1>
+<p>В тази глава изграждаме подход, който ни позволява да изучаваме среда, чието състояние се базира на изображения. По зададено изображение и множество от действия трябва да изберем действие, което максимизира изучената част от средата. По-конкретно, текущото състояние се определя от изображението на приложението и възможните действия с графичните елементи, а изучената част е моментното покритие на код.</p>
+<p>Подходът, който използваме се базира изцяло на данните, които средата предоставя. В частност, разработваме модели, които представляват дълбока невронна мрежа, която приема изображения като входни данни и избира действие. Така създадения модел се тренира върху мобилни приложения за Android. Експерименталните резултати показват…</p>
+<h2 id="related-work"><span class="header-section-number">5.1</span> Related Work</h2>
+<p>Извличане на характеристики (features) от сензорна информация намалява нуждата от ръчното им закодиране и увеличава скоростта на изграждане на модели. Скорошните открития в областта на дълбокото самообучение доведоха до големи открития в компютърното зрение <span class="citation" data-cites="krizhevsky2012imagenet mnih2013machine sermanet2013pedestrian">(Krizhevsky et al. 2012; Mnih 2013; Sermanet et al. 2013)</span> и гласовото разпознаване <span class="citation" data-cites="dahl2012context graves2013speech">(Dahl et al. 2012; Graves et al. 2013)</span>. Те използват различни архитектури за дълбоки невронни мрежи, включително конволуции, многослойни персептрони (multilayer perceptrons) и рекурентни невронни мрежи. Използвани са в обучение с учител, без учител. Дълбока конволюционна невронна мрежа беше използвана за създаване на агент, който играе Atari 2600 компютърни игри <span class="citation" data-cites="mnih2013playing">(Mnih et al. 2013)</span>. За входни данни е използван видео вход с размери 84x84 пиксела и възможните действия. Работата използва повторение на преживяното (experience replay) <span class="citation" data-cites="lin1992self">(Lin 1992)</span> и надгражда върху Neural Fitted Q-Learning (NFQ) <span class="citation" data-cites="riedmiller2005neural">(Riedmiller 2005)</span>. Още по-добри резултати бяха постигнати като се използва Монте Карло дървета за планиране, които бавно достигат извод, за обучение на дълбоки невронни мрежи, които са многократно по-бързи <span class="citation" data-cites="guo2014deep">(Guo et al. 2014)</span>.</p>
+<h2 id="дадено-на-агента"><span class="header-section-number">5.2</span> Дадено на агента</h2>
+<p>Предполагаме, че на стъпка <span class="math inline">\(t\)</span> получаваме изображение и множество от възможни действия, определящи текущото състояние на средата. Искаме да създадем модел, който при подадени така описаните входни данни ни дава апостериорно разпределение, описващо вероятностите всяко от възможните действия да ни доведе до състояние с оптимално увеличение на покритието на програмен код.</p>
+<p>Предизвикателството в така поставената задача се състой във факта, че изображенията са сложни многомерни обекти, а оптималното действие във всяко състояние може да е различно от това в което и да е друго. Нашият модел трябва да изгради вътрешно представяне на средата (напр. да научи какво е бутон, граници на отделните елементи и кои действия да използва върху тях) и да научи оптималните действия за всяко състояние.</p>
+<ol type="1">
+<li>Изображение на ГПИ средата - пример ГПИ. примери + изображения</li>
+<li>Изучи ГПИ средата - да достигне всички възможни състояние на средата</li>
+<li>Възможни действия -</li>
+</ol>
+<p>Агентът щракване върху екрана (пример визуален) Агентът натиска и задържа (пример визуален) Агентът натиска и влачи курсора (пример визуален) Агентът scroll-ва нагоре и надолу</p>
+<p><img src="./assets/mobile_app_structure.png" /></p>
 <table>
 <thead>
 <tr class="header">
@@ -501,61 +690,15 @@ Table x.x Short title of the figure . . . </p>
 </tr>
 </tbody>
 </table>
-<p>където:</p>
-<ul>
-<li><span class="math inline">\(s = (s_{x_1}, s_{x_2}, s_{x_3}, s_{x_4})\)</span> е вектор от характеристиките на състоянието</li>
-</ul>
-<p>Преходите от матрица <span class="math inline">\(D\)</span> може да се представят като:</p>
-<figure>
-<img src="./source/figures/flower_store_transitions.png" alt="Преходи на средата описани в D" /><figcaption><em>Преходи на средата описани в <span class="math inline">\(D\)</span></em></figcaption>
-</figure>
-<p>Получаваме ново състояние, което не е описано в <span class="math inline">\(D\)</span>. Свеждаме задачата до избор на действие, което ще ни даде максимална награда за текущото състояние.</p>
-<h2 id="модел"><span class="header-section-number">3.3</span> Модел</h2>
-<p>Нека имаме среда <span class="math inline">\(E\)</span>, намираща се в състояние <span class="math inline">\(s \in \mathbb{S}\)</span>, върху което могат да бъдат изпълнени действия от множеството от действия <span class="math inline">\(\mathbb{A}\)</span>. При избор на действие <span class="math inline">\(a \in \mathbb{A}\)</span>, средата <span class="math inline">\(E\)</span> предоставя награда <span class="math inline">\(r\)</span>, която приема стойности в интервала <span class="math inline">\([0; 1]\)</span> и преминава в ново състояние <span class="math inline">\(s&#39;\)</span> (в частност, <span class="math inline">\(s&#39; = s\)</span>, т.е. средата може да не премине в ново състояние). Множеството <span class="math inline">\(\mathbb{A}\)</span> е ненаредено и всяко <span class="math inline">\(a \in \mathbb{A}\)</span> може да се обозначи с единствено цяло число, като по този начин въвеждаме наредба в <span class="math inline">\(\mathbb{A}\)</span>. Всяко състояние на средата <span class="math inline">\(S\)</span> позволява изпълнението на действия <span class="math inline">\(\mathbb{A}\)</span>, които са предварително дефинирани. Множеството от всички възможни състояния на средата <span class="math inline">\(\mathbb{S}\)</span> е неизвестно.</p>
-<p>Нека след първоначално обучение от специалист имаме матрица на преходите <span class="math inline">\(D\)</span> с размерност <span class="math inline">\(n \times 3\)</span>, където <span class="math inline">\(n\)</span> е броя на преходите. Всеки ред от <span class="math inline">\(D\)</span> дефинира наредена тройка <span class="math inline">\((състояние, действие, награда)\)</span>, която описва получените награди при изпълнение на съответното действие за даденото състояние.</p>
-<p>Нека имаме състояние <span class="math inline">\(s&#39;\)</span>, за което <span class="math inline">\(D\)</span> не съдържа информация. В този случай, целта е да намерим подмножеството от действията, така че изпълнението им да води до получаване на оптимална награда от средата <span class="math inline">\(E\)</span>.</p>
-<h3 id="бейсова-невронна-мрежа-бнм"><span class="header-section-number">3.3.1</span> Бейсова невронна мрежа (БНМ)</h3>
-<p>Задачата се свежда до намиране на действие, което предоставя най-висока награда за текущото състояние. Допълнително, вероятностното разпределение над всички възможни действия би позволило оценяване на несигурността при избор на действие. С тази информация може да решим кога да използваме знанията за средата и кога да я изучаваме <span class="citation" data-cites="2018arXiv180204412A">(Azizzadenesheli et al. 2018)</span>. Когато вероятността е по-голяма ще е по-вероятно да изберем конкретното действие.</p>
-<p>Ще използваме бейсова невронна мрежа със следната архитектура:</p>
-<h2 id="обучение-на-модела"><span class="header-section-number">3.4</span> Обучение на модела</h2>
-<h2 id="експерименти"><span class="header-section-number">3.5</span> Експерименти</h2>
-<h2 id="заключение"><span class="header-section-number">3.6</span> Заключение</h2>
-<h1 id="среда-за-изучаване-rl-exploration-на-гпи-приложения"><span class="header-section-number">4</span> Среда за изучаване (RL exploration) на ГПИ приложения</h1>
-<p>Много от съществуващите системи за автоматизирано тестване на Android приложения се опитват да изградят решения, които взимат предвид недостатъците при тестване на приложения. Някои от трудностите повече не съществуват благодарение на напредъка на модерния компютърен хардуер, а други могат да бъдат решени много по-ефективно благодарение на новъведени инструменти за разработка за Android. Например, <strong>SwiftHand</strong> <span class="citation" data-cites="choi2013guided">(Choi et al. 2013)</span> се опитва да намали нуждата от преинсталиране на приложението върху устройството. В по-новите си версии, adb, предлага способ за изчистване на състоянието на дадено приложение, без нужда от преинсталирането му.</p>
-<p>От особена важност за изграждане на алгоритъм в среда за подсиленото обучение е наличието на награда. Повечето от изградените системи се опитват да максимизират покритието на код. В практиката тази метрика е важна, но и недостатъчна. Фактът, че дадена част от програмния код се е изпълнила и не е предизвикала грешка в програмата не означава, че поведението на програмата е правилно (или не се е променило без това бъде желания ефект от разработчиците).</p>
-<p>За нуждите на текущата работа и всеки желаещ да използва се предлага обща среда за изучване/тестване на мобилни приложения. Поради липсата на други свободни инструменти (или такива, които са използваеми). Системата е свободна за използване, с отворен код и може да бъде намерена на <a href="https://github.com/appgym/appgym" class="uri">https://github.com/appgym/appgym</a>.</p>
-<h2 id="android-специфична-среда"><span class="header-section-number">4.1</span> Android специфична среда</h2>
-<p>Средата се състои от два основни компонента - клиент и сървър. Сървърът работи върху Android устройството и предоставя данни за постигнатото покритие на код, изпълнение на действията, генерирани от модела и изображение за текущото състояние. Клиентът предоставя възможните действия на модела, както и комуникира със сървъра за да представи неговата функционалност.</p>
-<p>Клиентът предоставя интерфейс към средата подобен на този на OpenAI gym <span class="citation" data-cites="brockman2016openai">(Brockman et al. 2016)</span>. Двата основни метода, които реализира са <code>reset()</code> и <code>step(action)</code>. <code>reset()</code> предоставя възможност на средата да се върне до първоначално състояние. Това се постига чрез спиране на приложението (ако то е стартирано), изтриване на данните поддържащи състоянието му, стартирането му и предоставяне на образ от екрана, както и възможните действия за състоянието. Изброената функционалност се реализира посредством adb команди и библиотеката <code>uiautomator</code> <a href="https://github.com/xiaocong/uiautomator" class="uri">https://github.com/xiaocong/uiautomator</a>. Методът <code>step(action)</code> изпълнява избраното действие и предоставя новото състояние на средата, заедно с получената награда и новите възможни действия. Тук също се взима решение дали текущия епизод от обучението е приключил.</p>
-<p>Множеството от възможните действия за текущото състояние се базират на броя и видовете графични елементи в него. Всеки елемент върху който може да се извърши докосване, задържане, скролиране, влачене и т.н. се превръща в действие. Множеството от графични елементи се извлича посредством библиотеката <code>uiautomator</code>.</p>
-<p>Наградата за всяка избрана стъпка пряко се базира на покритието на код за текущия епизод. Стойността се изменя в интервала <span class="math inline">\([0;1.0]\)</span> и е нарастваща. Получаването на наградата след всяка стъпка е необходимо за обучение на модела. Скоростта на изпълнение пряко влияе на общото бързодействие на системата. За намиране на текущото покритие на код и изграждане на доклад се използва <code>JaCoCo</code> <span class="citation" data-cites="hoffmann2009jacoco">(Hoffmann et al. 2009)</span>. <code>JaCoCo</code> е интегриран в инструментите за разработка на Android и се използва основно, когато е нужно покритие на код базирано на преминали тестове.</p>
-<p>За целта на текущата работата бяха направени някои промени, които предоставят възможност за извличане на необходимите данни, докато програмата се изпълнява и не е в тестова среда. Няколко подхода бяха изпробвани за изграждане на крайните доклади. Първоначално бяха използвани adb команди и генериране на доклад посредством gradle задача. Бързодействието не беше задоволително - необходими бяха около 2 секунди на съвременен мобилен компютър. Около повината от времето се губеше в генериране на доклад, който предоставя повече от необходимата информация.</p>
-<p>Крайното решение използва комбинация от <code>HTTP</code> сървър на устройството, клиент, специализиран начин за записване на данните за покритие на код и специализиран генератор за доклади. Допълнително бързодействие се постига чрез Nailgun <a href="https://github.com/martylamb/nailgun" class="uri">https://github.com/martylamb/nailgun</a> сървър, който изпълнява генератора за доклади. Така описаните оптимизации извършват необходимата работа за около 20 милисекунди (или 0.02 секунди) на същия компютър.</p>
-<p>Взимането на текущото състояние се състой в направата на изображение на текущия екран на устройството. Тази задача отново се извършва от библиотеката <code>uiautomator</code>. Изображението може да бъде намалено до желани размери в зависимост от изискванията на задачата. Така полученото изображение се представя за текущо състояние под формата на тензор.</p>
-<h2 id="web-специфична-среда"><span class="header-section-number">4.2</span> Web специфична среда</h2>
-<p>Web средата предоставя възможност за изучаване на мобилни web приложения. Тя използва библиотеката <code>pyppeteer</code>, която предоставя автоматизиран достъп до Web Browser.</p>
-<p>Системата AppGym е структурирана така че да може да се използва с други мобилни и настолни операционни системи. Интерфейсът е много сходен до този на OpenAI gym. Възможно е рамката да бъде променена, така че да бъде използвана за други задачи и други цели.</p>
-<h1 id="изучаване-на-гпи-среди"><span class="header-section-number">5</span> Изучаване на ГПИ среди</h1>
-<p>В тази глава изграждаме подход, който ни позволява да изучаваме среда, чието състояние се базира на изображения. По зададено изображение и множество от действия трябва да изберем действие, което максимизира изучената част от средата. По-конкретно, текущото състояние се определя от изображението на приложението и възможните действия с графичните елементи, а изучената част е моментното покритие на код.</p>
-<p>Подходът, който използваме се базира изцяло на данните, които средата предоставя. В частност, разработваме модели, които представляват дълбока невронна мрежа, която приема изображения като входни данни и избира действие. Така създадения модел се тренира върху мобилни приложения за Android. Експерименталните резултати показват…</p>
-<h2 id="related-work"><span class="header-section-number">5.1</span> Related Work</h2>
-<p>Извличане на характеристики (features) от сензорна информация намалява нуждата от ръчното им закодиране и увеличава скоростта на изграждане на модели. Скорошните открития в областта на дълбокото самообучение доведоха до големи открития в компютърното зрение <span class="citation" data-cites="krizhevsky2012imagenet mnih2013machine sermanet2013pedestrian">(Krizhevsky et al. 2012; Mnih 2013; Sermanet et al. 2013)</span> и гласовото разпознаване <span class="citation" data-cites="dahl2012context graves2013speech">(Dahl et al. 2012; Graves et al. 2013)</span>. Те използват различни архитектури за дълбоки невронни мрежи, включително конволуции, многослойни персептрони (multilayer perceptrons) и рекурентни невронни мрежи. Използвани са в обучение с учител, без учител. Дълбока конволюционна невронна мрежа беше използвана за създаване на агент, който играе Atari 2600 компютърни игри <span class="citation" data-cites="mnih2013playing">(Mnih et al. 2013)</span>. За входни данни е използван видео вход с размери 84x84 пиксела и възможните действия. Работата използва повторение на преживяното (experience replay) <span class="citation" data-cites="lin1992self">(Lin 1992)</span> и надгражда върху Neural Fitted Q-Learning (NFQ) <span class="citation" data-cites="riedmiller2005neural">(Riedmiller 2005)</span>. Още по-добри резултати бяха постигнати като се използва Монте Карло дървета за планиране, които бавно достигат извод, за обучение на дълбоки невронни мрежи, които са многократно по-бързи <span class="citation" data-cites="guo2014deep">(Guo et al. 2014)</span>.</p>
-<h2 id="дадено-на-агента"><span class="header-section-number">5.2</span> Дадено на агента</h2>
-<p>Предполагаме, че на стъпка <span class="math inline">\(t\)</span> получаваме изображение и множество от възможни действия, определящи текущото състояние на средата. Искаме да създадем модел, който при подадени така описаните входни данни ни дава апостериорно разпределение, описващо вероятностите всяко от възможните действия да ни доведе до състояние с оптимално увеличение на покритието на програмен код.</p>
-<p>Предизвикателството в така поставената задача се състой във факта, че изображенията са сложни многомерни обекти, а оптималното действие във всяко състояние може да е различно от това в което и да е друго. Нашият модел трябва да изгради вътрешно представяне на средата (напр. да научи какво е бутон, граници на отделните елементи и кои действия да използва върху тях) и да научи оптималните действия за всяко състояние.</p>
-<ol type="1">
-<li>Изображение на ГПИ средата - пример ГПИ. примери + изображения</li>
-<li>Изучи ГПИ средата - да достигне всички възможни състояние на средата</li>
-<li>Възможни действия -</li>
-</ol>
-<p>Агентът щракване върху екрана (пример визуален) Агентът натиска и задържа (пример визуален) Агентът натиска и влачи курсора (пример визуален) Агентът scroll-ва нагоре и надолу</p>
-<p><img src="./assets/mobile_app_structure.png" /></p>
 <h2 id="задачи"><span class="header-section-number">5.3</span> Задачи</h2>
 <ul>
 <li>Да постигне 100% покритие на програмния код на даден софтуерен продукт (СП)</li>
 <li>Да генерира поредица от действия с които преминава през всички клонове на дървото, описващо възможните състояния на СП</li>
 </ul>
 <h2 id="модел-на-агента"><span class="header-section-number">5.4</span> Модел на агента</h2>
+<p>Нека имаме среда <span class="math inline">\(E\)</span>, намираща се в състояние <span class="math inline">\(s \in \mathbb{S}\)</span>, върху което могат да бъдат изпълнени действия от множеството от действия <span class="math inline">\(\mathbb{A}\)</span>. При избор на действие <span class="math inline">\(a \in \mathbb{A}\)</span>, средата <span class="math inline">\(E\)</span> предоставя награда <span class="math inline">\(r\)</span>, която приема стойности в интервала <span class="math inline">\([0; 1]\)</span> и преминава в ново състояние <span class="math inline">\(s&#39;\)</span> (в частност, <span class="math inline">\(s&#39; = s\)</span>, т.е. средата може да не премине в ново състояние). Множеството <span class="math inline">\(\mathbb{A}\)</span> е ненаредено и всяко <span class="math inline">\(a \in \mathbb{A}\)</span> може да се обозначи с единствено цяло число, като по този начин въвеждаме наредба в <span class="math inline">\(\mathbb{A}\)</span>. Всяко състояние на средата <span class="math inline">\(S\)</span> позволява изпълнението на действия <span class="math inline">\(\mathbb{A}\)</span>, които са предварително дефинирани. Множеството от всички възможни състояния на средата <span class="math inline">\(\mathbb{S}\)</span> е неизвестно.</p>
+<p>Нека след първоначално обучение от специалист имаме матрица на преходите <span class="math inline">\(D\)</span> с размерност <span class="math inline">\(n \times 3\)</span>, където <span class="math inline">\(n\)</span> е броя на преходите. Всеки ред от <span class="math inline">\(D\)</span> дефинира наредена тройка <span class="math inline">\((състояние, действие, награда)\)</span>, която описва получените награди при изпълнение на съответното действие за даденото състояние.</p>
+<p>Нека имаме състояние <span class="math inline">\(s&#39;\)</span>, за което <span class="math inline">\(D\)</span> не съдържа информация. В този случай, целта е да намерим подмножеството от действията, така че изпълнението им да води до получаване на оптимална награда от средата <span class="math inline">\(E\)</span>.</p>
 <p>Нека всяко състояние <span class="math inline">\(s\)</span> е представено като изображение и имаме множество от действия <span class="math inline">\(A\)</span>, които отговарят на различни графични елементи на екрана. Искаме да изберем действие <span class="math inline">\(a\)</span>, което максимизира покритието на код. Предизвикателството се състой в намирането на възможно най-кратките поредици от действия, когато <span class="math inline">\(A\)</span> може да е различно за всяко състояние <span class="math inline">\(s\)</span>.</p>
 <p>Подобно на <span class="citation" data-cites="mnih2013playing">(Mnih et al. 2013)</span> създаваме дълбока конволюционна невронна мрежа, която използва изображения за входни данни.Директна работа с реалните размери на изображение взето от устройството може да изисква прекалено много изчисления (computationally demanding). Съвременните мобилни устройства достигат до 3840x2160 разделителна способност (Syny Xperia Z5 Premium). Въпреки това, физическият размер на екраните на смартфоните достигат до 5.5“. Това ги прави далеч по-малки от екраните на настолните и преносимите компютри. Основното взаимодействие с мобилните устройства се извършва чрез различни жестове (натискане, задържане, приплъзване и т.н.) с екрана. Предвид физическите размери на пръстите на човек, екраните не могат да съдържат голямо множество от елементи с които може да се взаимодейства.</p>
 <h3 id="пространство-на-състоянието-state-space"><span class="header-section-number">5.4.1</span> Пространство на състоянието (State space)</h3>
