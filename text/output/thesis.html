@@ -258,8 +258,8 @@
                 <li><a href="#бейсова-изкуствена-невронна-мрежа-бинм"><span class="toc-section-number">3.3.1</span> Бейсова изкуствена невронна мрежа (БИНМ)</a></li>
                 </ul></li>
                 <li><a href="#експерименти"><span class="toc-section-number">3.4</span> Експерименти</a><ul>
-                <li><a href="#обучение"><span class="toc-section-number">3.4.1</span> Обучение</a></li>
-                <li><a href="#оценка"><span class="toc-section-number">3.4.2</span> Оценка</a></li>
+                <li><a href="#данни"><span class="toc-section-number">3.4.1</span> Данни</a></li>
+                <li><a href="#обучение"><span class="toc-section-number">3.4.2</span> Обучение</a></li>
                 <li><a href="#резултати"><span class="toc-section-number">3.4.3</span> Резултати</a></li>
                 </ul></li>
                 <li><a href="#заключение"><span class="toc-section-number">3.5</span> Заключение</a></li>
@@ -591,7 +591,7 @@ Table x.x Short title of the figure . . . </p>
 <li>втори скрит слой: пълно свързан слой (fully-connected) с 15 неврона</li>
 <li>изходен слой: слой с 5 неврона (броя на възможните действия)</li>
 </ul>
-<p>Прилагаме ReLU активизационна функция, предложена в <span class="citation" data-cites="hahnloser2000digital">(Hahnloser et al. 2000)</span> и отпадане (Dropout), предложен в <span class="citation" data-cites="srivastava2014dropout">(Srivastava et al. 2014)</span>, с вероятност за отпадане на неврон <span class="math inline">\(p=0.2\)</span> върху първи и втори скрит слой. Допълнително, прилагаме нормализация на група от данни (Batch normalization), предложена в <span class="citation" data-cites="ioffe2015batch">(Ioffe &amp; Szegedy 2015)</span>, след втори скрит слой. Описаната БНМ може да се представи в PyTorch <span class="citation" data-cites="paszke2017pytorch">(Paszke et al. 2017)</span> като:</p>
+<p>Прилагаме ReLU активизационна функция, предложена в <span class="citation" data-cites="hahnloser2000digital">(Hahnloser et al. 2000)</span> и отпадане (Dropout), предложен в <span class="citation" data-cites="srivastava2014dropout">(Srivastava et al. 2014)</span>, с вероятност за отпадане на неврон <span class="math inline">\(p=0.2\)</span> върху първи и втори скрит слой. Допълнително, прилагаме нормализация на група от данни (Batch normalization), предложена в <span class="citation" data-cites="ioffe2015batch">(Ioffe &amp; Szegedy 2015)</span>, след втори скрит слой. Описаната БИНМ може да се представи в PyTorch <span class="citation" data-cites="paszke2017pytorch">(Paszke et al. 2017)</span> като:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">class</span> Model(nn.Module):</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</a>
@@ -608,13 +608,34 @@ Table x.x Short title of the figure . . . </p>
 <a class="sourceLine" id="cb1-14" data-line-number="14">        x <span class="op">=</span> F.relu(<span class="va">self</span>.bn(<span class="va">self</span>.drop2(<span class="va">self</span>.fc2(x))))</a>
 <a class="sourceLine" id="cb1-15" data-line-number="15">        <span class="cf">return</span> <span class="va">self</span>.fc3(x)</a></code></pre></div>
 <h2 id="експерименти"><span class="header-section-number">3.4</span> Експерименти</h2>
-<h3 id="обучение"><span class="header-section-number">3.4.1</span> Обучение</h3>
-<p>За оптимизатор използваме <em>SGD</em> със скрост на обучение (learning rate) <span class="math inline">\(lr=0.1\)</span> и движеща сила (momentum) <span class="math inline">\(m=0.5\)</span>. За функция оценяща грешката използваме Кръстосана Ентропия? (Cross-Entropy). Описаният модел обучаваме за <em>1,000</em> епохи.</p>
-<h3 id="оценка"><span class="header-section-number">3.4.2</span> Оценка</h3>
+<p>В следващите експерименти ще приложим описания БИНМ модел върху 3 различни ГПИ среди. Към всяка среда имаме данни предоставени от QA експерт, закодирани по схемата представена в таблица на преходите <span class="math inline">\(T\)</span>. Моделът ще оценим като използваме кръстосана ентропия (cross entropy) дефинирана като:</p>
+<p><span class="math display">\[H(p, q) = E_p[-\log{q}] = H(p) + D_{KL}(p || q)\]</span></p>
+<p>където <span class="math inline">\(H(p)\)</span> е ентропията на <span class="math inline">\(p\)</span> и <span class="math inline">\(D_{KL}(p || q)\)</span> е Кулбак-Лейблер разстоянието до <span class="math inline">\(q\)</span> от <span class="math inline">\(p\)</span>. За дискретни <span class="math inline">\(p\)</span> и <span class="math inline">\(q\)</span> имаме:</p>
+<p><span class="math display">\[H(p, q) = - \sum_x p(x) \log q(x)\]</span></p>
+<h3 id="данни"><span class="header-section-number">3.4.1</span> Данни</h3>
+<p>Първата среда създадена за целите на текущата работа и е представена в описания пример по-горе.</p>
+<p>Втората среда представя мобилното приложение <em>AutoMath Photo Calculator</em> и използва данни от Rico представени в <span class="citation" data-cites="deka2017rico">(Deka et al. 2017)</span>. Приложението дава решения на математически задачи след заснемането им с камерата на устройството. Част от визуалната среда е представена на </p>
+<figure>
+<img src="./source/figures/auto_math_navigation.png" alt="Преходи при изучаване на AutoMath Photo Calculator " /><figcaption><em>Преходи при изучаване на AutoMath Photo Calculator</em> </figcaption>
+</figure>
+<p>Използвайки подхода за закодиране приложен върху тази среда получаваме </p>
+<figure>
+<img src="./source/figures/auto_math_encoding.png" alt="Закодирано представяне на AutoMath Photo Calculator" /><figcaption><em>Закодирано представяне на AutoMath Photo Calculator</em></figcaption>
+</figure>
+<p>Третата среда е базирана на част от мобилното приложение <em>Memrise</em>. То предоставя флашкарти за изучаване на чужди езици и материали създадени от потребителя.</p>
+<figure>
+<img src="./source/figures/memrise_navigation.png" alt="Преходи при изучаване на Memrise " /><figcaption><em>Преходи при изучаване на Memrise</em> </figcaption>
+</figure>
+<p>Закодираната версия е представена на </p>
+<figure>
+<img src="./source/figures/memrise_encoding.png" alt="Закодирано представяне на Memrise" /><figcaption><em>Закодирано представяне на Memrise</em></figcaption>
+</figure>
+<h3 id="обучение"><span class="header-section-number">3.4.2</span> Обучение</h3>
+<p>За оптимизатор използваме <em>SGD</em> със скорост на обучение (learning rate) <span class="math inline">\(lr=0.1\)</span> и движеща сила (momentum) <span class="math inline">\(m=0.5\)</span>. Описаният модел обучаваме за <em>1,000</em> епохи върху всяка среда по отделно.</p>
+<h3 id="резултати"><span class="header-section-number">3.4.3</span> Резултати</h3>
 <figure>
 <img src="./source/figures/training_loss.png" alt="Промяна на грешката по време на обучение" /><figcaption><em>Промяна на грешката по време на обучение</em></figcaption>
 </figure>
-<h3 id="резултати"><span class="header-section-number">3.4.3</span> Резултати</h3>
 <figure>
 <img src="./source/figures/posterior_actions_dist.png" alt="Апостериорно разпределение за всяко действие" /><figcaption><em>Апостериорно разпределение за всяко действие</em></figcaption>
 </figure>
@@ -801,6 +822,9 @@ References are automatically generated from the BibTex file (References.bib)
 </div>
 <div id="ref-dahl2012context">
 <p>Dahl, G.E. et al., 2012. Context-dependent pre-trained deep neural networks for large-vocabulary speech recognition. <em>IEEE Transactions on Audio, Speech, and Language Processing</em>, 20(1), pp.30–42.</p>
+</div>
+<div id="ref-deka2017rico">
+<p>Deka, B. et al., 2017. Rico: A mobile app dataset for building data-driven design applications. In <em>Proceedings of the 30th annual acm symposium on user interface software and technology</em>. ACM, pp. 845–854.</p>
 </div>
 <div id="ref-gal2016theoretically">
 <p>Gal, Y. &amp; Ghahramani, Z., 2016. A theoretically grounded application of dropout in recurrent neural networks. In <em>Advances in neural information processing systems</em>. pp. 1019–1027.</p>
