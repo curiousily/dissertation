@@ -591,7 +591,7 @@ Table x.x Short title of the figure . . . </p>
 <li>втори скрит слой: пълно свързан слой (fully-connected) с 15 неврона</li>
 <li>изходен слой: слой с 5 неврона (броя на възможните действия)</li>
 </ul>
-<p>Прилагаме ReLU активизационна функция и отпадане (dropout) върху първи и втори скрит слой. Предложената БНМ може да се представи в PyTorch като:</p>
+<p>Прилагаме ReLU активизационна функция, предложена в <span class="citation" data-cites="hahnloser2000digital">(Hahnloser et al. 2000)</span> и отпадане (Dropout), предложен в <span class="citation" data-cites="srivastava2014dropout">(Srivastava et al. 2014)</span>, с вероятност за отпадане на неврон <span class="math inline">\(p=0.2\)</span> върху първи и втори скрит слой. Допълнително, прилагаме нормализация на група от данни (Batch normalization), предложена в <span class="citation" data-cites="ioffe2015batch">(Ioffe &amp; Szegedy 2015)</span>, след втори скрит слой. Описаната БНМ може да се представи в PyTorch <span class="citation" data-cites="paszke2017pytorch">(Paszke et al. 2017)</span> като:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">class</span> Model(nn.Module):</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</a>
@@ -823,6 +823,9 @@ References are automatically generated from the BibTex file (References.bib)
 <div id="ref-guo2014deep">
 <p>Guo, X. et al., 2014. Deep learning for real-time atari game play using offline monte-carlo tree search planning. In <em>Advances in neural information processing systems</em>. pp. 3338–3346.</p>
 </div>
+<div id="ref-hahnloser2000digital">
+<p>Hahnloser, R.H. et al., 2000. Digital selection and analogue amplification coexist in a cortex-inspired silicon circuit. <em>Nature</em>, 405(6789), p.947.</p>
+</div>
 <div id="ref-hao2014puma">
 <p>Hao, S. et al., 2014. Puma: Programmable ui-automation for large-scale dynamic analysis of mobile apps. In <em>Proceedings of the 12th annual international conference on mobile systems, applications, and services</em>. ACM, pp. 204–217.</p>
 </div>
@@ -840,6 +843,9 @@ References are automatically generated from the BibTex file (References.bib)
 </div>
 <div id="ref-huang2015abca">
 <p>Huang, S.-Y. et al., 2015. ABCA: Android black-box coverage analyzer of mobile app without source code. In <em>Progress in informatics and computing (pic), 2015 ieee international conference on</em>. IEEE, pp. 399–403.</p>
+</div>
+<div id="ref-ioffe2015batch">
+<p>Ioffe, S. &amp; Szegedy, C., 2015. Batch normalization: Accelerating deep network training by reducing internal covariate shift. In <em>International conference on machine learning</em>. pp. 448–456.</p>
 </div>
 <div id="ref-joachims1997webwatcher">
 <p>Joachims, T. et al., 1997. Webwatcher: A tour guide for the world wide web. In <em>IJCAI (1)</em>. Citeseer, pp. 770–777.</p>
@@ -910,6 +916,9 @@ References are automatically generated from the BibTex file (References.bib)
 <div id="ref-ohba1982software">
 <p>Ohba, M., 1982. Software quality &amp;equil; test accuracy<span class="math inline">\(\times\)</span> test coverage. In <em>Proceedings of the 6th international conference on software engineering</em>. IEEE Computer Society Press, pp. 287–293.</p>
 </div>
+<div id="ref-paszke2017pytorch">
+<p>Paszke, A. et al., 2017. PyTorch: Tensors and dynamic neural networks in python with strong gpu acceleration.</p>
+</div>
 <div id="ref-riedmiller2005neural">
 <p>Riedmiller, M., 2005. Neural fitted q iteration–first experiences with a data efficient neural reinforcement learning method. In <em>European conference on machine learning</em>. Springer, pp. 317–328.</p>
 </div>
@@ -933,6 +942,9 @@ References are automatically generated from the BibTex file (References.bib)
 </div>
 <div id="ref-silver2017mastering">
 <p>Silver, D. et al., 2017. Mastering the game of go without human knowledge. <em>Nature</em>, 550(7676), pp.354–359.</p>
+</div>
+<div id="ref-srivastava2014dropout">
+<p>Srivastava, N. et al., 2014. Dropout: A simple way to prevent neural networks from overfitting. <em>The Journal of Machine Learning Research</em>, 15(1), pp.1929–1958.</p>
 </div>
 <div id="ref-sundermeyer2012lstm">
 <p>Sundermeyer, M., Schlüter, R. &amp; Ney, H., 2012. LSTM neural networks for language modeling. In <em>Interspeech</em>. pp. 194–197.</p>
