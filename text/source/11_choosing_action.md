@@ -184,4 +184,28 @@ $$H(p, q) = - \sum_x p(x) \log q(x)$$
 
 ![*Апостериорно разпределение за всяко действие*\label{posterior_actions_box}](./source/figures/posterior_actions_box.png)
 
+#### AutoMath
+
+![*Промяна на грешката по време на обучение върху AutoMath*\label{auto_math_training_loss}](./source/figures/auto_math_training_loss.png)
+
+![*Апостериорно разпределение за всяко действие*\label{auto_math_posterior_dist}](./source/figures/auto_math_posterior_dist.png)
+
+![*Апостериорно разпределение за всяко действие*\label{auto_math_posterior_box}](./source/figures/auto_math_posterior_box.png)
+
+#### Memrise
+
+![*Промяна на грешката по време на обучение върху Memrise*\label{memrise_training_loss}](./source/figures/memrise_training_loss.png)
+
+![*Апостериорно разпределение за всяко действие*\label{memrise_posterior_dist}](./source/figures/memrise_posterior_dist.png)
+
+![*Апостериорно разпределение за всяко действие*\label{memrise_posterior_box}](./source/figures/memrise_posterior_box.png)
+
+#### Използване на всички данни
+
+![*Промяна на грешката по време на обучение върху всички данни*\label{combined_training_loss}](./source/figures/combined_training_loss.png)
+
+![*Апостериорно разпределение за всяко действие*\label{combined_posterior_dist}](./source/figures/combined_posterior_dist.png)
+
+![*Апостериорно разпределение за всяко действие*\label{combined_posterior_box}](./source/figures/combined_posterior_box.png)
+
 ## Заключение
