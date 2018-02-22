@@ -334,6 +334,13 @@ Table x.x Short title of the figure . . . </p>
 
 <h1 id="увод"><span class="header-section-number">1</span> Увод</h1>
 <h2 id="мотивация"><span class="header-section-number">1.1</span> Мотивация</h2>
+<p>Последните години донесоха бързо развитие в сферата на Изкуственият Интелект (ИИ) и по-конкретно в дълбокото самообучение (Deep Learning). Моделите, използващи тези методи, имат разнообразни приложения и понякога се представят сходно или по-добре от човек, на същата задача:</p>
+<ul>
+<li>здравеопазване <span class="citation" data-cites="rajkomar2018scalable">(Rajkomar et al. 2018)</span>, <span class="citation" data-cites="poplin2018prediction">(Poplin et al. 2018)</span>, <span class="citation" data-cites="lee2017deep">(Lee et al. 2017)</span></li>
+<li>самоуправляващи се автомобили <span class="citation" data-cites="bojarski2016end">(Bojarski et al. 2016)</span>, <span class="citation" data-cites="huval2015empirical">(Huval et al. 2015)</span>, <span class="citation" data-cites="bojarski2017explaining">(Bojarski et al. 2017)</span></li>
+<li>търгуване на стоковата борса</li>
+<li>създаване на изкуство</li>
+</ul>
 <p>Една от основните цели на Изкуствения Интелект (ИИ) е да създаде агенти, които разбират и взаимодействат със света около нас. Значителен прогрес в тази насока беше постигнат през последните години благодарение на развитието на изчислителната техника (графични ускорители), наличието на голямо количество данни, нови начини за събиране и съхранението им и нови алгоритми. Бързият напредък в сферата на подсиленото обучение доведе до разработката на интелигентни агенти, взаимодействащи с все по-сложни среди <span class="citation" data-cites="mnih2015human">(Mnih et al. 2015)</span>, <span class="citation" data-cites="silver2016alphago">(Silver &amp; Hassabis 2016)</span>, <span class="citation" data-cites="levine2016end">(Levine et al. 2016)</span> и <span class="citation" data-cites="silver2017mastering">(Silver et al. 2017)</span>. Критични за това са обучаващите алгоритми, техники за скалирането им и симулационни среди, които предоставят начини за оценка и сравняване на различни агенти <span class="citation" data-cites="bellemare2013arcade">(Bellemare et al. 2013)</span>, <span class="citation" data-cites="todorov2012mujoco">(Todorov et al. 2012)</span> и <span class="citation" data-cites="johansson2016learning">(Johansson et al. 2016)</span>.</p>
 <p>Хората се справят лесно с редица задачи, които изискват комплексно разбиране на визуалния свят, разпознаване на различни обекти в него и взаимодействие с тях. Например (екран от ГПИ среда и разпознаване на обекти в него). Би било лесно за човек да изучи подобна визуална среда.</p>
 <p>Агенти, действащи в симулирани среди, са фундаментално ограничени - те никога не се сблъскват със сложността на реалния свят, поради което не могат да използват семантично знание и достигнат интелигентност. В роботиката агентите действат в реална среда, но процесът на обучение е бавен и скъп, дори и за тясно дефинирани задачи <span class="citation" data-cites="levine2016end">(Levine et al. 2016)</span>.</p>
@@ -458,6 +465,7 @@ Table x.x Short title of the figure . . . </p>
 <h3 id="бейсови-невронни-мрежи"><span class="header-section-number">2.2.3</span> Бейсови Невронни Мрежи</h3>
 <p>Един от големите недостатъци на съществуващите архитектури на невронни мрежи е, че изводите, които получаваме, са оценки на точки. Моделите не казват до колко са сигурни в предложените резултати. Когато например един лекар получи резултат от даден модел, той трябва да знае защо и как моделът е стигнал до него. Бейсовата статистика може да даде отговор на тези въпроси <span class="citation" data-cites="gal2015dropout">(Gal &amp; Ghahramani 2015)</span>. Дори при модели използващи RNN, Бейсова интерпретация на задачата дава по-добри резултати от съществуващи такива <span class="citation" data-cites="gal2016theoretically">(Gal &amp; Ghahramani 2016)</span>.</p>
 <p>Бейсови невронни мрежи, предложени в края на 80-те години <span class="citation" data-cites="kononenko1989bayesian">(Kononenko 1989)</span> и задълбочено изучавани по-късно <span class="citation" data-cites="mackay1992practical neal2012bayesian">(MacKay 1992; Neal 2012)</span>, предлагат вероятностна интерпретация на моделите за дълбоко обучение, като представят теглата им като вероятностни разпределения. Този тип модели са устойчиви на пренастройване (overfitting), предлагат оценки на несигурността и могат да се тренират върху малко на брой данни.</p>
+<h4 id="оценка-на-несигурността"><span class="header-section-number">2.2.3.1</span> Оценка на несигурността</h4>
 <h2 id="автоматизирано-тестване-на-гпи"><span class="header-section-number">2.3</span> Автоматизирано тестване на ГПИ</h2>
 <p>Проверката за правилно поведение на софтуер продукт е неизменна част от създаването му. Откриване и поправяне на всички потенциални проблеми преди той да бъде доставен до крайния потребител може да се сметне за най-добър случай.</p>
 <h3 id="автоматизирано-тестване-на-android-приложения"><span class="header-section-number">2.3.1</span> Автоматизирано тестване на Android приложения</h3>
@@ -467,7 +475,7 @@ Table x.x Short title of the figure . . . </p>
 <p><strong>MobiGUITAR</strong> <span class="citation" data-cites="amalfitano2015mobiguitar">(Amalfitano et al. 2015)</span> строи модел на приложението по време на тестване. За всяко ново състояние се поддържа списък с възможни действия, които се изпълняват използвайки DFS (depth first search) стратегия.</p>
 <p><strong>SwiftHand</strong> <span class="citation" data-cites="choi2013guided">(Choi et al. 2013)</span> се опитва да максимизира покритието на код за тестваното приложение. Допълнително, инструментът се старае да минимизира броя рестартирания на приложението. SwiftHand генерира единствено докосвания и скролвания.</p>
 <p><strong>PUMA</strong> <span class="citation" data-cites="hao2014puma">(Hao et al. 2014)</span> предлага генерална среда за автоматизиране на ГПИ. Инструментът предлага рамка за програмиране, в която могат да бъдат имплементирани различни стратегии за изучаване на тестваното приложение.</p>
-<h4 id="покритие-на-код"><span class="header-section-number">2.3.1.2</span> Покритие на код</h4>
+<h4 id="покритие-на-програмен-код"><span class="header-section-number">2.3.1.2</span> Покритие на програмен код</h4>
 <p>Една от основните цели на системите за автоматизирано тестване на софтуер е да постигнат максимално покритие на програмния код. Няколко решения се опитват да постигнат това и за операционната система на Android.</p>
 <p><strong>BBoxTester</strong> <span class="citation" data-cites="zhauniarovich2015towards">(Zhauniarovich et al. 2015)</span> е рамка за изготвяне на доклади относно покритието на програмния код, без той да бъде наличен. За разлика от други подобни системи, BBoxTester предлага детайлни метрики за покритието на отделни класове, методи и т.н. В основата на системата се използва друг софтуерен продукт - Emma <span class="citation" data-cites="roubtsov2005emma">(Roubtsov &amp; others 2005)</span>. BBoxTester е система с отворен код, намираща се на <a href="https://github.com/zyrikby/BBoxTester" class="uri">https://github.com/zyrikby/BBoxTester</a>. За съжаление системата е неподдържана (от 2015г.) и несъвместима с нови версии на Android.</p>
 <p><strong>CovDroid</strong> <span class="citation" data-cites="yeh2015covdroid">(Yeh &amp; Huang 2015)</span> е друга система за тестване посредством подход на черната кутия (black-box testing). Програмният код на продукта не е наличен. CovDroid изчислява покритието на код като инструментира кода на приложението и използва Android Debug Bridge (adb) за да наблюдава изхода от изпълнение на програмата.</p>
@@ -608,17 +616,20 @@ Table x.x Short title of the figure . . . </p>
 <a class="sourceLine" id="cb1-14" data-line-number="14">        x <span class="op">=</span> F.relu(<span class="va">self</span>.bn(<span class="va">self</span>.drop2(<span class="va">self</span>.fc2(x))))</a>
 <a class="sourceLine" id="cb1-15" data-line-number="15">        <span class="cf">return</span> <span class="va">self</span>.fc3(x)</a></code></pre></div>
 <h2 id="експерименти"><span class="header-section-number">3.4</span> Експерименти</h2>
-<p>В следващите експерименти ще приложим описания БИНМ модел върху 3 различни ГПИ среди. Към всяка среда имаме данни предоставени от QA експерт, закодирани по схемата представена в таблица на преходите <span class="math inline">\(T\)</span>. Моделът ще оценим като използваме кръстосана ентропия (cross entropy) дефинирана като:</p>
+<p>В следващите експерименти ще приложим описания БИНМ модел върху 3 различни ГПИ среди. Към всяка среда имаме данни предоставени от QA експерт, закодирани по схемата представена в таблица на преходите <span class="math inline">\(T\)</span>.</p>
+<p>Моделът ще оценим като използваме кръстосана ентропия (cross entropy) дефинирана като:</p>
 <p><span class="math display">\[H(p, q) = E_p[-\log{q}] = H(p) + D_{KL}(p || q)\]</span></p>
-<p>където <span class="math inline">\(H(p)\)</span> е ентропията на <span class="math inline">\(p\)</span> и <span class="math inline">\(D_{KL}(p || q)\)</span> е Кулбак-Лейблер разстоянието до <span class="math inline">\(q\)</span> от <span class="math inline">\(p\)</span>. За дискретни <span class="math inline">\(p\)</span> и <span class="math inline">\(q\)</span> имаме:</p>
+<p>където p и q са вероятностни разпределения, съответно на предсказани и наблюдавани стойности, <span class="math inline">\(H(p)\)</span> е ентропията на <span class="math inline">\(p\)</span> и <span class="math inline">\(D_{KL}(p || q)\)</span> е Кулбак-Лейблер разстоянието до <span class="math inline">\(q\)</span> от <span class="math inline">\(p\)</span>. За дискретни <span class="math inline">\(p\)</span> и <span class="math inline">\(q\)</span> имаме:</p>
 <p><span class="math display">\[H(p, q) = - \sum_x p(x) \log q(x)\]</span></p>
+<p>В проведените експерименти <span class="math inline">\(H(p, q)\)</span> има вида</p>
+<p><span class="math display">\[H(p, q) = - \sum_{x=1}^5 p(x) \log q(x)\]</span></p>
 <h3 id="данни"><span class="header-section-number">3.4.1</span> Данни</h3>
 <p>Първата среда създадена за целите на текущата работа и е представена в описания пример по-горе.</p>
 <p>Втората среда представя мобилното приложение <em>AutoMath Photo Calculator</em> и използва данни от Rico представени в <span class="citation" data-cites="deka2017rico">(Deka et al. 2017)</span>. Приложението дава решения на математически задачи след заснемането им с камерата на устройството. Част от визуалната среда е представена на </p>
 <figure>
 <img src="./source/figures/auto_math_navigation.png" alt="Преходи при изучаване на AutoMath Photo Calculator " /><figcaption><em>Преходи при изучаване на AutoMath Photo Calculator</em> </figcaption>
 </figure>
-<p>Използвайки подхода за закодиране приложен върху тази среда получаваме </p>
+<p>Прилагайки предложения по-горе подход за закодиране върху тази среда получаваме </p>
 <figure>
 <img src="./source/figures/auto_math_encoding.png" alt="Закодирано представяне на AutoMath Photo Calculator" /><figcaption><em>Закодирано представяне на AutoMath Photo Calculator</em></figcaption>
 </figure>
@@ -631,14 +642,15 @@ Table x.x Short title of the figure . . . </p>
 <img src="./source/figures/memrise_encoding.png" alt="Закодирано представяне на Memrise" /><figcaption><em>Закодирано представяне на Memrise</em></figcaption>
 </figure>
 <h3 id="обучение"><span class="header-section-number">3.4.2</span> Обучение</h3>
-<p>За оптимизатор използваме <em>SGD</em> със скорост на обучение (learning rate) <span class="math inline">\(lr=0.1\)</span> и движеща сила (momentum) <span class="math inline">\(m=0.5\)</span>. Описаният модел обучаваме за <em>1,000</em> епохи върху всяка среда по отделно. Записваме грешката върху тренировъчните данни след обучението на модела във всяка епоха.</p>
+<p>Целта е да минимизираме грешката <span class="math inline">\(H(p, q)\)</span>. Ще използваме <em>SGD</em> оптимизатор със скорост на обучение (learning rate) <span class="math inline">\(lr=0.1\)</span> и движеща сила (momentum) <span class="math inline">\(m=0.5\)</span>. Описаният модел обучаваме за <em>1,000</em> епохи върху всяка среда по отделно. Записваме грешката върху тренировъчните данни след обучението на модела във всяка епоха.</p>
 <h3 id="резултати"><span class="header-section-number">3.4.3</span> Резултати</h3>
-<p>За извличане на извадки от апостериорното разпределение на действията използваме Монте Карло отпадане (MC dropout) и прилагаме отпадане по време на тестване <span class="math inline">\(n=10,000\)</span> пъти. Стойностите във всяка извадка се нормализират - отместваме всички стойности с минималната стойност от извадката и сумата от всички стойности приравняваме на единица.</p>
+<p>За извличане на извадки от апостериорното разпределение на действията използваме алгоритъм Монте Карло отпадане (MC dropout) и прилагаме отпадане по време на тестване <span class="math inline">\(n=10,000\)</span> пъти. Стойностите във всяка извадка се нормализират - отместваме всички стойности с минималната стойност от извадката и сумата от всички стойности приравняваме на единица.</p>
 <h4 id="примерна-среда"><span class="header-section-number">3.4.3.1</span> Примерна среда</h4>
 <figure>
 <img src="./source/figures/training_loss.png" alt="Промяна на грешката по време на обучение върху примерната среда" /><figcaption><em>Промяна на грешката по време на обучение върху примерната среда</em></figcaption>
 </figure>
-<p>Матрицата <span class="math inline">\(T\)</span> предоставя малко данни за примерната среда (само 3 реда), но въпреки това предложения модел успява да намали тренировъчната грешка. Разбира се, възможно е модела да се е нагодил (overfit) спрямо данните, които използваме за обучение. Средната стойност и стандартното отклонение на апостериорното разпределение за вероятността действие да е оптимално са дадени на .</p>
+<p>От графиката се вижда как след първите 50 епохи от обучението, средната грешка намалява до стойност близка до 0.5 и след това остава постоянна. В идеалния случай грешката трябва да намалява постепенно и да достигне стойности близки до 0. Ако графиката много бързо достига до 0, моделът се влияе прекалено силно от обучителната извадка.</p>
+<p>Матрицата <span class="math inline">\(T\)</span> предоставя малко данни за примерната среда (само 3 реда), но въпреки това предложеният модел успява да намали тренировъчната грешка. Разбира се, възможно е модела да се е нагодил (overfit) спрямо данните, които използваме за обучение. Средната стойност и стандартното отклонение на апостериорното разпределение на вероятността действието да е оптимално са дадени на .</p>
 <table>
 <thead>
 <tr class="header">
@@ -670,12 +682,13 @@ Table x.x Short title of the figure . . . </p>
 </tbody>
 </table>
 
-<p>Отново, закодираното последно състояние получено от примерната среда при изпълнение на действията описани в <span class="math inline">\(T\)</span> е представено на </p>
+<p>От таблица  виждаме, че действие <span class="math inline">\(a_4\)</span> е оптималното действие за последното наблюдавано състояние.</p>
+<p>Последното състояние получено от примерната среда при изпълнение на действията описани в <span class="math inline">\(T\)</span> е представено на </p>
 <figure>
 <img src="./source/figures/flower_store_final_state.png" alt="Закодиране на последното състояние представено в примерната среда" /><figcaption>Закодиране на последното състояние представено в примерната среда</figcaption>
 </figure>
-<p>При неколкократно изпълнение за обучение и оценка на модела наблюдаваме, че получените извадки се различават и понякога <span class="math inline">\(a_3\)</span> има по-висока средна стойност от <span class="math inline">\(a_4\)</span>.</p>
-<p>Апостериорното разпределение е представено на  и </p>
+<p>При неколкократно изпълнение за обучение и оценка на модела наблюдаваме, че получените извадки се различават и понякога <span class="math inline">\(a_3\)</span> има по-висока средна стойност от <span class="math inline">\(a_4\)</span>. Причината за това е малкото количество данни в <span class="math inline">\(T\)</span>.</p>
+<p>Апостериорното разпределение е представено на  и обобщено в </p>
 <figure>
 <img src="./source/figures/posterior_actions_dist.png" alt="Апостериорно разпределение за всяко действие" /><figcaption><em>Апостериорно разпределение за всяко действие</em></figcaption>
 </figure>
@@ -683,6 +696,7 @@ Table x.x Short title of the figure . . . </p>
 <img src="./source/figures/posterior_actions_box.png" alt="Апостериорно разпределение за всяко действие" /><figcaption><em>Апостериорно разпределение за всяко действие</em></figcaption>
 </figure>
 <h4 id="automath"><span class="header-section-number">3.4.3.2</span> AutoMath</h4>
+<p>Резултатите от прилагането на предложеният модел за втората среда, използвайки реални данни от Rico, са представени в следващите графики:</p>
 <figure>
 <img src="./source/figures/auto_math_training_loss.png" alt="Промяна на грешката по време на обучение върху AutoMath" /><figcaption><em>Промяна на грешката по време на обучение върху AutoMath</em></figcaption>
 </figure>
@@ -692,6 +706,7 @@ Table x.x Short title of the figure . . . </p>
 <figure>
 <img src="./source/figures/auto_math_posterior_box.png" alt="Апостериорно разпределение за всяко действие" /><figcaption><em>Апостериорно разпределение за всяко действие</em></figcaption>
 </figure>
+<p>От графика  се вижда как след първите 500 епохи от обучението, средната грешка клони към 0. От графиките  и  се вижда, че моделът е много сигурен в избора на действие <span class="math inline">\(a_4\)</span> като оптимално.</p>
 <h4 id="memrise"><span class="header-section-number">3.4.3.3</span> Memrise</h4>
 <figure>
 <img src="./source/figures/memrise_training_loss.png" alt="Промяна на грешката по време на обучение върху Memrise" /><figcaption><em>Промяна на грешката по време на обучение върху Memrise</em></figcaption>
@@ -702,17 +717,23 @@ Table x.x Short title of the figure . . . </p>
 <figure>
 <img src="./source/figures/memrise_posterior_box.png" alt="Апостериорно разпределение за всяко действие" /><figcaption><em>Апостериорно разпределение за всяко действие</em></figcaption>
 </figure>
+<p>От графика  се вижда как след първите 400 епохи от обучението, средната грешка клони към 0. От графиките  и  се вижда, че моделът е много сигурен в избора на действие <span class="math inline">\(a_4\)</span> като оптимално и в отхвърлянето на действие <span class="math inline">\(a_5\)</span>.</p>
 <h4 id="използване-на-всички-данни"><span class="header-section-number">3.4.3.4</span> Използване на всички данни</h4>
+<p>Промяната на <span class="math inline">\(H(p, q)\)</span> по време на обучение използвайки всички налични данни е представена на .</p>
 <figure>
 <img src="./source/figures/combined_training_loss.png" alt="Промяна на грешката по време на обучение върху всички данни" /><figcaption><em>Промяна на грешката по време на обучение върху всички данни</em></figcaption>
 </figure>
+<p>Получихме желаното поведение на грешката.</p>
 <figure>
 <img src="./source/figures/combined_posterior_dist.png" alt="Апостериорно разпределение за всяко действие" /><figcaption><em>Апостериорно разпределение за всяко действие</em></figcaption>
 </figure>
 <figure>
 <img src="./source/figures/combined_posterior_box.png" alt="Апостериорно разпределение за всяко действие" /><figcaption><em>Апостериорно разпределение за всяко действие</em></figcaption>
 </figure>
+<p>Графики  и  представят предсказани стойности от модела, когато използваме състояние  от примерната среда. Наблюдаваме, че вече моделът е много сигурен в избора на действие <span class="math inline">\(a_4\)</span></p>
 <h2 id="заключение"><span class="header-section-number">3.5</span> Заключение</h2>
+<p>Разработихме модел, който може да избира оптимално следващо действие при представено закодирано състояние на ГПИ среда. Допълнително, моделът ни дава възможност да оценим до колко сигурен е в предсказаните стойности. Моделът се състои от дълбока Бейсова невронна мрежа, която получава закодирано състояние на средата като входни данни и е обучена използвайки кръстосана ентропия оценяща грешката. Извадки от апостериорното разпределение на действията извлекохме използвайки MC dropout. Оценката на обучените модели показва добра ефективност при избор на действие и генерализация между различните среди, когато използваме данни от всички среди.</p>
+<p>Едно от ограниченията на предложения модел е предположението, че имаме външен агент, който закодира изображенията на средата до представяне, което е подходящо за обучение. В глава 5 ще разширим предложения модел, така че входните данни да са “сурови” - изображенията, които средата предоставя. Друго ограничение на нашия модел е, че не взима под предвид последователността от взетите действия по време на изучаването на ГПИ средата. Следователно, агентът има възможност да опита да изучи състояния от средата, които вече е изучил.</p>
 <h1 id="среда-за-изучаване-rl-exploration-на-гпи-приложения"><span class="header-section-number">4</span> Среда за изучаване (RL exploration) на ГПИ приложения</h1>
 <p>Много от съществуващите системи за автоматизирано тестване на Android приложения се опитват да изградят решения, които взимат предвид недостатъците при тестване на приложения. Някои от трудностите повече не съществуват благодарение на напредъка на модерния компютърен хардуер, а други могат да бъдат решени много по-ефективно благодарение на новъведени инструменти за разработка за Android. Например, <strong>SwiftHand</strong> <span class="citation" data-cites="choi2013guided">(Choi et al. 2013)</span> се опитва да намали нуждата от преинсталиране на приложението върху устройството. В по-новите си версии, adb, предлага способ за изчистване на състоянието на дадено приложение, без нужда от преинсталирането му.</p>
 <p>От особена важност за изграждане на алгоритъм в среда за подсиленото обучение е наличието на награда. Повечето от изградените системи се опитват да максимизират покритието на код. В практиката тази метрика е важна, но и недостатъчна. Фактът, че дадена част от програмния код се е изпълнила и не е предизвикала грешка в програмата не означава, че поведението на програмата е правилно (или не се е променило без това бъде желания ефект от разработчиците).</p>
@@ -869,6 +890,12 @@ References are automatically generated from the BibTex file (References.bib)
 <div id="ref-bishop2007pattern">
 <p>Bishop, C., 2007. Pattern recognition and machine learning (information science and statistics), 1st edn. 2006. Corr. 2nd printing edn. <em>Springer, New York</em>.</p>
 </div>
+<div id="ref-bojarski2016end">
+<p>Bojarski, M. et al., 2016. End to end learning for self-driving cars. <em>arXiv preprint arXiv:1604.07316</em>.</p>
+</div>
+<div id="ref-bojarski2017explaining">
+<p>Bojarski, M. et al., 2017. Explaining how a deep neural network trained with end-to-end learning steers a car. <em>arXiv preprint arXiv:1704.07911</em>.</p>
+</div>
 <div id="ref-boyan1994packet">
 <p>Boyan, J.A., Littman, M.L. &amp; others, 1994. Packet routing in dynamically changing networks: A reinforcement learning approach. <em>Advances in neural information processing systems</em>, pp.671–671.</p>
 </div>
@@ -938,6 +965,9 @@ References are automatically generated from the BibTex file (References.bib)
 <div id="ref-huang2015abca">
 <p>Huang, S.-Y. et al., 2015. ABCA: Android black-box coverage analyzer of mobile app without source code. In <em>Progress in informatics and computing (pic), 2015 ieee international conference on</em>. IEEE, pp. 399–403.</p>
 </div>
+<div id="ref-huval2015empirical">
+<p>Huval, B. et al., 2015. An empirical evaluation of deep learning on highway driving. <em>arXiv preprint arXiv:1504.01716</em>.</p>
+</div>
 <div id="ref-ioffe2015batch">
 <p>Ioffe, S. &amp; Szegedy, C., 2015. Batch normalization: Accelerating deep network training by reducing internal covariate shift. In <em>International conference on machine learning</em>. pp. 448–456.</p>
 </div>
@@ -961,6 +991,9 @@ References are automatically generated from the BibTex file (References.bib)
 </div>
 <div id="ref-lecun1989backpropagation">
 <p>LeCun, Y. et al., 1989. Backpropagation applied to handwritten zip code recognition. <em>Neural computation</em>, 1(4), pp.541–551.</p>
+</div>
+<div id="ref-lee2017deep">
+<p>Lee, J.-G. et al., 2017. Deep learning in medical imaging: General overview. <em>Korean journal of radiology</em>, 18(4), pp.570–584.</p>
 </div>
 <div id="ref-legendre1805nouvelles">
 <p>Legendre, A.M., 1805. <em>Nouvelles méthodes pour la détermination des orbites des comètes</em>, F. Didot.</p>
@@ -1012,6 +1045,12 @@ References are automatically generated from the BibTex file (References.bib)
 </div>
 <div id="ref-paszke2017pytorch">
 <p>Paszke, A. et al., 2017. PyTorch: Tensors and dynamic neural networks in python with strong gpu acceleration.</p>
+</div>
+<div id="ref-poplin2018prediction">
+<p>Poplin, R. et al., 2018. Prediction of cardiovascular risk factors from retinal fundus photographs via deep learning. <em>Nature Biomedical Engineering</em>, p.1.</p>
+</div>
+<div id="ref-rajkomar2018scalable">
+<p>Rajkomar, A. et al., 2018. Scalable and accurate deep learning for electronic health records. <em>arXiv preprint arXiv:1801.07860</em>.</p>
 </div>
 <div id="ref-riedmiller2005neural">
 <p>Riedmiller, M., 2005. Neural fitted q iteration–first experiences with a data efficient neural reinforcement learning method. In <em>European conference on machine learning</em>. Springer, pp. 317–328.</p>
