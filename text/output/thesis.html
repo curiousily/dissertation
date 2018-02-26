@@ -252,7 +252,13 @@
                 </ul></li>
                 </ul></li>
                 <li><a href="#избор-на-действие"><span class="toc-section-number">3</span> Избор на действие</a><ul>
-                <li><a href="#литературен-обзор-1"><span class="toc-section-number">3.1</span> Литературен обзор</a></li>
+                <li><a href="#литературен-обзор-1"><span class="toc-section-number">3.1</span> Литературен обзор</a><ul>
+                <li><a href="#подсилено-обучение-1"><span class="toc-section-number">3.1.1</span> Подсилено обучение</a></li>
+                <li><a href="#оптимизация"><span class="toc-section-number">3.1.2</span> Оптимизация</a></li>
+                <li><a href="#изкуствени-невронни-мрежи-инм"><span class="toc-section-number">3.1.3</span> Изкуствени невронни мрежи (ИНМ)</a></li>
+                <li><a href="#бейсово-моделиране"><span class="toc-section-number">3.1.4</span> Бейсово моделиране</a></li>
+                <li><a href="#бейсови-изкуствени-невронни-мрежи-бинм"><span class="toc-section-number">3.1.5</span> Бейсови изкуствени невронни мрежи (БИНМ)</a></li>
+                </ul></li>
                 <li><a href="#пример"><span class="toc-section-number">3.2</span> Пример</a></li>
                 <li><a href="#модел"><span class="toc-section-number">3.3</span> Модел</a><ul>
                 <li><a href="#бейсова-изкуствена-невронна-мрежа-бинм"><span class="toc-section-number">3.3.1</span> Бейсова изкуствена невронна мрежа (БИНМ)</a></li>
@@ -517,6 +523,40 @@ Table x.x Short title of the figure . . . </p>
 <li>достигнато е неочаквано състояние (аномалия), което може да е свързано с грешка в програмният код</li>
 </ul></li>
 </ul>
+<h3 id="подсилено-обучение-1"><span class="header-section-number">3.1.1</span> Подсилено обучение</h3>
+<p>Много практически проблеми могат да бъдат формулирани като намиране на функция <span class="math inline">\(f: X \mapsto Y\)</span>, където <span class="math inline">\(X\)</span> е пространство на входните данни, а <span class="math inline">\(Y\)</span> е пространство на изходните данни. Често, дефинирането на <span class="math inline">\(f\)</span> е трудно или невъзможно. Например, каква е функцията, която намира позицията на бутон в изображение от ГПИ?</p>
+<p>Подсиленото обучение предлага подход, който използва примерни данни имащи вида: <span class="math inline">\((x, y) \in X \times Y\)</span> от търсеното съпоставяне.</p>
+<p><strong>Цел.</strong> Нека имаме обучителна извадка <span class="math inline">\(E\)</span> от вероятностно разпределение <span class="math inline">\(D\)</span> съдържаща <span class="math inline">\(n\)</span> примера <span class="math inline">\(\{(x_1, y_1), \ldots (x_n, y_n)\}\)</span>, които са независими и еднакво разпределени. <em>Обучение</em> наричаме търсенето на такава функция <span class="math inline">\(f: X \mapsto Y\)</span>, която дава най-близки резултати до тези от обучителната извадка. Обучението се състои в избиране на функция на загубата/грешката (loss) <span class="math inline">\(L(\hat{y}, y)\)</span> измерваща несъгласието между предсказаната стойност <span class="math inline">\(\hat{y} = f(x)\)</span> и истинската стойност <span class="math inline">\(y\)</span>. Целта на обучението е да намери <span class="math inline">\(f^* \in \mathcal{F}\)</span>, която удовлетворява уравнението:</p>
+<p><span class="math display">\[f^* = arg \min_{f \in \mathcal{F}}E_{(x, y) \sim D} L(f(x), y)\]</span> </p>
+<p>където <span class="math inline">\(\mathcal{F}\)</span> е някакво множество от възможни функции. Обучението се свежда до търсене на такава <span class="math inline">\(f^*\)</span>, която минимизира очаквана грешка над <span class="math inline">\(D\)</span>.</p>
+<p>Поставеният оптимизационен проблем е нерешим, защото нямаме достъп до всички <span class="math inline">\(d \in D\)</span>. Следователно, не може да намерим очаквана грешка или да я опростим, без да наложим силни предположения относно <span class="math inline">\(D, L \, \text{или} \, f\)</span>. Ако използваме предположението за независимост и еднаква разпределеност може да получим приближение на очакваната грешка като използваме извадки от осреднената грешка върху обучителната извадка:</p>
+<p><span class="math display">\[f^* \approx arg\min_{f \in \mathcal{F}} \frac{1}{n} \sum_{i=1}^n L(f(x_i), y_i)\]</span> </p>
+<p>Предполагаме, че минимизирането на грешката върху обучителната извадка <span class="math inline">\(E\)</span> ще ни даде таква функция <span class="math inline">\(f\)</span>, която минимизира грешката върху всички стойности от <span class="math inline">\(D\)</span>.</p>
+<p>Нека разгледаме един от най-простите статистически модели - линейната регресия <span class="citation" data-cites="gauss1809theoria legendre1805nouvelles">(Gauss 1809; Legendre 1805)</span>. Нека е дадено множество от <span class="math inline">\(n\)</span> входно-изходни двойки <span class="math inline">\(\{(x_1, y_1), ..., (x_n, y_n)\}\)</span>. Например, нека <span class="math inline">\(x\)</span> да е тегло в кг, а <span class="math inline">\(y\)</span> - височина в см на <span class="math inline">\(n\)</span> човека. Линейната регресия прави предположението, че съществува линейна функция, която преобразува всяко <span class="math inline">\(x_i \in \mathbb{R}\)</span> към <span class="math inline">\(y_i \in \mathbb{R}\)</span>. Тогава нашият модел е линейна трансформация на входните данни:</p>
+<p><span class="math display">\[f(x) = W^Tx + b\]</span></p>
+<p>където <span class="math inline">\(W\)</span> и <span class="math inline">\(b\)</span> са параметри на модела, които трябва да оценим. Често използвана функция оценяща грешката е квадрата от разликата между предсказаната и истинската стойност:</p>
+<p><span class="math display">\[L(\hat{y}, y) = (\hat{y} - y)^2\]</span></p>
+<p>Тогава, задачата свеждаме до намиране на такива стойности за <span class="math inline">\(W\)</span> и <span class="math inline">\(b\)</span>, които минимизират грешката:</p>
+<p><span class="math display">\[f^* = arg\min_{w, b}[\frac{1}{n} \sum_{i=1}^n(W^Tx_i + b - y_i)^2]\]</span></p>
+<p>Обучението на модел се свежда до оптимизационен проблем, който има следната обща форма <span class="math inline">\(\theta^* = arg\min_{\theta} g(\theta)\)</span>, където <span class="math inline">\(\theta\)</span> са параметри на модела, а <span class="math inline">\(g(\theta) = \frac{1}{n}\sum_{i=1}^n L(f_{\theta}(x_i), y_i)\)</span>.</p>
+<h3 id="оптимизация"><span class="header-section-number">3.1.2</span> Оптимизация</h3>
+<p>Нека предположим, че <span class="math inline">\(g\)</span> е диференцируема. Тогава може да намерим градиента на <span class="math inline">\(g\)</span>:</p>
+<p><span class="math display">\[\nabla_{\theta}g = \theta \frac{\delta{g}}{\delta{\theta}} \]</span></p>
+<p>Градиентът е вектор от частни производни даващ ни наклона на <span class="math inline">\(g\)</span> от всяко измерение за <span class="math inline">\(\theta\)</span>. Той може да бъде използван за посока на търсене - може да подобрим оценката на <span class="math inline">\(\theta\)</span> като добавим малка стойност от негативната посока на градиента (тъй като търсим минимум на функция). Това мотивира създаването на алгоритъмът за постепенно спускане (gradient descent) <span class="citation" data-cites="cauchy1847methode">(Cauchy 1847)</span>, който работи на две стъпки:</p>
+<ol type="1">
+<li>намери градиента</li>
+<li>обнови параметрите, като използваш малка стъпка в посока на негативния градиент</li>
+</ol>
+<p>Процесът продължава докато не се достигне желаната грешка. Например, намирането на стойностите на <span class="math inline">\(W\)</span> се свежда до продължителното прилагане на:</p>
+<p><span class="math display">\[W := W - \alpha\frac{\delta{g}}{\delta{W}}\]</span></p>
+<p>Където <span class="math inline">\(\alpha\)</span> е размерът на стъпката. Ако стойността е прекалено висока, може да не се достигне сходимост, когато стойността на <span class="math inline">\(\alpha\)</span> е прекалено ниска обучението отнема прекалено дълго време.</p>
+<h3 id="изкуствени-невронни-мрежи-инм"><span class="header-section-number">3.1.3</span> Изкуствени невронни мрежи (ИНМ)</h3>
+<p>В предишните раздели видяхме, че може да дефинираме произволна диференцируема функция, която съпоставя входни данни <span class="math inline">\(x\)</span> на предсказани стойности <span class="math inline">\(\hat{y}\)</span>. За обучение на моделът използвахме постепенно спускане. Нека разгледаме по-подробно функцията <span class="math inline">\(f\)</span> и намиране на градиента, необходим за изпълнения на алгоритъма.</p>
+<p>Построяването на изкуствена невронна мрежа се състой в повторение на умножение на матрици и прилагане на активационни функции. Активационните функции (напр. sigmoid, tanh, ReLU) позволяват на ИНМ да апроксимират нелинейни функции.</p>
+<p>Например, построяването на двуслойна невронна мрежа може да се представи като <span class="math inline">\(f(x) = W_2 \sigma (W_1 x)\)</span>, където <span class="math inline">\(W_1\)</span> и <span class="math inline">\(W_2\)</span> са матрици, а <span class="math inline">\(\sigma\)</span> е активационна функция. Ако <span class="math inline">\(\sigma\)</span> е identity функция, ИНМ е линейна функция.</p>
+<p><em>Теорема</em> <strong>Универсална теорема за апроксимация</strong> изкуствена невронна мрежа с поне 1 скрит слой може да апроксимира произволна функция с произволна точност <span class="citation" data-cites="cybenko1989approximation">(Cybenko 1989)</span>, <span class="citation" data-cites="hornik1989multilayer">(Hornik et al. 1989)</span>.</p>
+<h3 id="бейсово-моделиране"><span class="header-section-number">3.1.4</span> Бейсово моделиране</h3>
+<h3 id="бейсови-изкуствени-невронни-мрежи-бинм"><span class="header-section-number">3.1.5</span> Бейсови изкуствени невронни мрежи (БИНМ)</h3>
 <h2 id="пример"><span class="header-section-number">3.2</span> Пример</h2>
 <p>Ще разгледаме мобилно приложение предоставящо възможност за поръчка на цветя с ГПИ представен на .</p>
 <figure>
@@ -902,6 +942,9 @@ References are automatically generated from the BibTex file (References.bib)
 <div id="ref-brockman2016openai">
 <p>Brockman, G. et al., 2016. OpenAI gym. <em>arXiv preprint arXiv:1606.01540</em>.</p>
 </div>
+<div id="ref-cauchy1847methode">
+<p>Cauchy, A., 1847. Méthode générale pour la résolution des systemes d’équations simultanées. <em>Comp. Rend. Sci. Paris</em>, 25(1847), pp.536–538.</p>
+</div>
 <div id="ref-chang2010gui">
 <p>Chang, T.-H., Yeh, T. &amp; Miller, R.C., 2010. GUI testing using computer vision. In <em>Proceedings of the sigchi conference on human factors in computing systems</em>. ACM, pp. 1535–1544.</p>
 </div>
@@ -916,6 +959,9 @@ References are automatically generated from the BibTex file (References.bib)
 </div>
 <div id="ref-crites1996improving">
 <p>Crites, R.H. &amp; Barto, A.G., 1996. Improving elevator performance using reinforcement learning. <em>Advances in neural information processing systems</em>, 8.</p>
+</div>
+<div id="ref-cybenko1989approximation">
+<p>Cybenko, G., 1989. Approximation by superpositions of a sigmoidal function. <em>Mathematics of control, signals and systems</em>, 2(4), pp.303–314.</p>
 </div>
 <div id="ref-dahl2012context">
 <p>Dahl, G.E. et al., 2012. Context-dependent pre-trained deep neural networks for large-vocabulary speech recognition. <em>IEEE Transactions on Audio, Speech, and Language Processing</em>, 20(1), pp.30–42.</p>
@@ -961,6 +1007,9 @@ References are automatically generated from the BibTex file (References.bib)
 </div>
 <div id="ref-hoffmann2009jacoco">
 <p>Hoffmann, M. et al., 2009. Jacoco code coverage tool. Online, 2009.</p>
+</div>
+<div id="ref-hornik1989multilayer">
+<p>Hornik, K., Stinchcombe, M. &amp; White, H., 1989. Multilayer feedforward networks are universal approximators. <em>Neural networks</em>, 2(5), pp.359–366.</p>
 </div>
 <div id="ref-huang2015abca">
 <p>Huang, S.-Y. et al., 2015. ABCA: Android black-box coverage analyzer of mobile app without source code. In <em>Progress in informatics and computing (pic), 2015 ieee international conference on</em>. IEEE, pp. 399–403.</p>
