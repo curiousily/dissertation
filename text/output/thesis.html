@@ -470,7 +470,7 @@ Table x.x Short title of the figure . . . </p>
 <p>VI методите заменят изчисляването на интеграли с такова на производни. Това е много подобно на оптимизационните методи използвани в DL. Основната разлика се състой в това, че оптимизацията е върху разпределения, а не точкови оценки. Този подход запазва много от предимствата на Бейсовото моделиране и представя вероятностни модели, които дават оценка на несигурността в изводите си.</p>
 <h3 id="бейсови-невронни-мрежи"><span class="header-section-number">2.2.3</span> Бейсови Невронни Мрежи</h3>
 <p>Един от големите недостатъци на съществуващите архитектури на невронни мрежи е, че изводите, които получаваме, са оценки на точки. Моделите не казват до колко са сигурни в предложените резултати. Когато например един лекар получи резултат от даден модел, той трябва да знае защо и как моделът е стигнал до него. Бейсовата статистика може да даде отговор на тези въпроси <span class="citation" data-cites="gal2015dropout">(Gal &amp; Ghahramani 2015)</span>. Дори при модели използващи RNN, Бейсова интерпретация на задачата дава по-добри резултати от съществуващи такива <span class="citation" data-cites="gal2016theoretically">(Gal &amp; Ghahramani 2016)</span>.</p>
-<p>Бейсови невронни мрежи, предложени в края на 80-те години <span class="citation" data-cites="kononenko1989bayesian">(Kononenko 1989)</span> и задълбочено изучавани по-късно <span class="citation" data-cites="mackay1992practical neal2012bayesian">(MacKay 1992; Neal 2012)</span>, предлагат вероятностна интерпретация на моделите за дълбоко обучение, като представят теглата им като вероятностни разпределения. Този тип модели са устойчиви на пренастройване (overfitting), предлагат оценки на несигурността и могат да се тренират върху малко на брой данни.</p>
+<p>Бейсови невронни мрежи, предложени в края на 80-те години <span class="citation" data-cites="kononenko1989bayesian">(Kononenko 1989)</span> и задълбочено изучавани по-късно <span class="citation" data-cites="mackay1992practical neal2012bayesian">(MacKay 1992a; Neal 2012)</span>, предлагат вероятностна интерпретация на моделите за дълбоко обучение, като представят теглата им като вероятностни разпределения. Този тип модели са устойчиви на пренастройване (overfitting), предлагат оценки на несигурността и могат да се тренират върху малко на брой данни.</p>
 <h4 id="оценка-на-несигурността"><span class="header-section-number">2.2.3.1</span> Оценка на несигурността</h4>
 <h2 id="автоматизирано-тестване-на-гпи"><span class="header-section-number">2.3</span> Автоматизирано тестване на ГПИ</h2>
 <p>Проверката за правилно поведение на софтуер продукт е неизменна част от създаването му. Откриване и поправяне на всички потенциални проблеми преди той да бъде доставен до крайния потребител може да се сметне за най-добър случай.</p>
@@ -574,8 +574,21 @@ Table x.x Short title of the figure . . . </p>
 <p><strong>Пример.</strong> Нека имаме обучителна извадка с размер <span class="math inline">\(n\)</span>: <span class="math inline">\(X = \{x_1, \ldots, x_n\}\)</span> и <span class="math inline">\(Y = \{y_1, \ldots, y_n\}\)</span>. Искаме да намерим параметрите <span class="math inline">\(\theta\)</span> на функцията <span class="math inline">\(y = f^{\theta}(x)\)</span>, които са вероятно са използване за генериране на обучителната извадка.</p>
 <p>Следвайки Бейсовият подход прилагаме априорно разпределение над параметрите, <span class="math inline">\(p(\theta)\)</span> и дефинираме функция на правдоподобие <span class="math inline">\(p(y | x, \theta)\)</span>.</p>
 <p>За класификационни задачи може да използваме softmax функция на правдоподобие:</p>
-<p><span class="math display">\[p(y = d| x, \theta) = \frac{exp(f^{\theta}_d(x))}{\sum_{i=1}^n exp(f^{\theta}_i(x))}\]</span></p>
+<p><span class="math display">\[p(y = d| x, \theta) = \frac{exp(f^{\theta}_d(x))}{\sum_{i=1}^n exp(f^{\theta}_i(x))}\]</span> </p>
+<p>или Гаусова функция на правдоподобие за регресионни задачи:</p>
+<p><span class="math display">\[p(y | x, \theta) = \mathcal{N}(y;f^{\theta}(x), \tau^{-1}I)\]</span> </p>
+<p>където <span class="math inline">\(\tau\)</span> определя прецизността на модела.</p>
+<p>При дадена обучителна извадка <span class="math inline">\((X, Y)\)</span> може да намерим апостериорното разпределение за параметър <span class="math inline">\(\theta\)</span> използвайки правилото на Бейс:</p>
+<p><span class="math display">\[p(\theta | X, Y) = \frac{p(Y | X, \theta)p(\theta)}{p(Y | X)}\]</span></p>
+<p>Използвайки апостериорното разпределение може да направим изводи относно ненаблюдавани данни <span class="math inline">\(x^*\)</span>:</p>
+<p><span class="math display">\[p(y^*|x^*, X, Y) = \int p(y^*|x^*, \theta)p(\theta| X, Y)d\theta\]</span></p>
+<p><strong>Намиране на апостериорно разпределение.</strong> Основен компонент при намирането на апостериорното разпределение е знаменателят (нормализатор) в правилото на Бейс:</p>
+<p><span class="math display">\[p(Y | X) = \int p(Y | X, \theta)p(\theta)d\theta\]</span></p>
+<p>Това интегриране се нарича още маргинализация на функцията на правдоподобие над <span class="math inline">\(\theta\)</span>. Маргинализацията може да бъде извършена аналитично за прости модели като Бейсовата линейна регресия. В подобни модели вероятностното разпределение на функцията на правдоподобие е спрегнато (conjugate) с това на вероятностното разпределение на функцията на апостериорното разпределение, което позволява аналитично решение. Такова решение не може да бъде намерено, когато моделите са по-сложни, защото искаме да приложим маргинализация върху всички възможни стойности на параметъра <span class="math inline">\(\theta\)</span>. За оценяване на параметри в по-сложни модели може апроксимиращи методи.</p>
 <h3 id="бейсови-изкуствени-невронни-мрежи-бинм"><span class="header-section-number">3.1.5</span> Бейсови изкуствени невронни мрежи (БИНМ)</h3>
+<p>Бейсовите изкуствени невронни мрежи, предложени в <span class="citation" data-cites="Tishby1989ConsistentIO">(Tishby et al. 1989)</span> и подробно разгледани в <span class="citation" data-cites="mackay1992practical">(MacKay 1992a)</span>, <span class="citation" data-cites="mackay1992bayesian">(MacKay 1992b)</span> и <span class="citation" data-cites="neal2012bayesian">(Neal 2012)</span>, предоставят вероятностна интерпретация чрез представяне теглата на изкуствените неврони като вероятностни разпределения. Тези модели са издръжливи на прекомерно нагаждане (overfitting), предоставят оценка на несигурността при взимане на решения и могат да се обучават с малки извадки.</p>
+<p>БИНМ поставят априорно разпределение върху теглата на невронната мрежа. Най-често се използва Гаусово вероятностно разпределение, приложено върху матрицата на параметрите <span class="math inline">\(p(W_i) = \mathcal{N}(0, 1)\)</span>. Функцията на правдоподобие се дефинира използвайки уравнение  или .</p>
+<h4 id="mc-dropout"><span class="header-section-number">3.1.5.1</span> MC Dropout</h4>
 <h2 id="пример"><span class="header-section-number">3.2</span> Пример</h2>
 <p>Ще разгледаме мобилно приложение предоставящо възможност за поръчка на цветя с ГПИ представен на .</p>
 <figure>
@@ -1076,7 +1089,10 @@ References are automatically generated from the BibTex file (References.bib)
 <p>Machiry, A., Tahiliani, R. &amp; Naik, M., 2013. Dynodroid: An input generation system for android apps. In <em>Proceedings of the 2013 9th joint meeting on foundations of software engineering</em>. ACM, pp. 224–234.</p>
 </div>
 <div id="ref-mackay1992practical">
-<p>MacKay, D.J., 1992. A practical bayesian framework for backpropagation networks. <em>Neural computation</em>, 4(3), pp.448–472.</p>
+<p>MacKay, D.J., 1992a. A practical bayesian framework for backpropagation networks. <em>Neural computation</em>, 4(3), pp.448–472.</p>
+</div>
+<div id="ref-mackay1992bayesian">
+<p>MacKay, D.J., 1992b. <em>Bayesian methods for adaptive models</em>. PhD thesis. California Institute of Technology.</p>
 </div>
 <div id="ref-memon2002gui">
 <p>Memon, A.M., 2002. GUI testing: Pitfalls and process. <em>Computer</em>, 35(8), pp.87–88.</p>
@@ -1152,6 +1168,9 @@ References are automatically generated from the BibTex file (References.bib)
 </div>
 <div id="ref-sutton1998reinforcement">
 <p>Sutton, R.S. &amp; Barto, A.G., 1998. <em>Reinforcement learning: An introduction</em>, MIT press Cambridge.</p>
+</div>
+<div id="ref-Tishby1989ConsistentIO">
+<p>Tishby, N., Levin, E.D. &amp; Solla, S.A., 1989. Consistent inference of probabilities in layered networks: Predictions and generalizations. <em>International 1989 Joint Conference on Neural Networks</em>, pp.403–409 vol.2.</p>
 </div>
 <div id="ref-todorov2012mujoco">
 <p>Todorov, E., Erez, T. &amp; Tassa, Y., 2012. MuJoCo: A physics engine for model-based control. In <em>Intelligent robots and systems (iros), 2012 ieee/rsj international conference on</em>. IEEE, pp. 5026–5033.</p>
